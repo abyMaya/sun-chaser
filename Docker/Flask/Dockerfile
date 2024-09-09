@@ -6,12 +6,12 @@ RUN mkdir /code
 WORKDIR /code
 
 # requirements.txtをコンテナにコピーしてパッケージをインストール
-COPY ../requirements.txt /code/
+COPY ./requirements.txt /code/
 RUN pip install -U pip && \
     pip install -r requirements.txt
 
 # ソースコードをコンテナにコピー
-COPY ../app /code/
+COPY ./app /code/
 
 # 環境変数を設定
 ENV FLASK_APP=app.py
