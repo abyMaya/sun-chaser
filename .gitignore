@@ -1,0 +1,10 @@
+# python
+__pycache__/
+*.pyc
+
+# Environment Variables
+.env
+
+# Docker
+*.log
+docker-compose.override.yml
