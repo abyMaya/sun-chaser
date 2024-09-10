@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUN Chaser</title>
+  <link rel="icon" href="../static/img/clear_day_16dp_EA3323_FILL0_wght400_GRAD0_opsz20.svg" id="favicon">
+  <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+  <header class="header" >
+    <h1>SUN Chaser</h1>
+    <div class="shortcut">
+      <a href="setting.html">Setting</a>
+      <a href="#">Logout</a>
+    </div>
+  </header>
+  <main>
+    <div id="serch">
+      <div id="details">
+        <label>Select Spot</label>
+        <form>
+          <select id="spots">
+            <option value="" selected disabled></option>
+            <option>東京タワー</option>
+            <option>鎌倉</option>
+            <option>上高地</option>
+            <option>日光</option>
+          </select>
+        </form>
+        
+      </div>
+          
+      <img src="../static/img/add_20dp.png">
+      <div id="details">
+        <form>
+          <label>Select Month</label>
+          <input type="month">      
+        </form>
+      </div>
+
+    </div>
+     
+
+    <button type="submit" >Find the SUN!!</button>
+
+    <div id="options">
+      <a href="setting.html" id="spotregister">観光地新規登録</a>
+      <form>
+        <select id="histories">
+          <option>保存済みの検索条件</option>
+          <option>東京タワー＋2024/10</option>
+          <option>鎌倉＋2024/10</option>
+          <option>上高地＋2024/10</option>
+          <option>日光＋2024/10</option>
+        </select>
+      </form>
+    </div>
+    
+
+
+    
+  </main>
+  <footer>
+    <p>&copy;2024 SUN Chaser abyMaya</p>
+  </footer>
+</body>
+</html>
