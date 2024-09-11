@@ -6,7 +6,7 @@
   <title>SUN Chaser</title>
   <link rel="icon" href="../static/img/clear_day_16dp_EA3323_FILL0_wght400_GRAD0_opsz20.svg" id="favicon">
   <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="../static/css/result.css">
+  <link rel="stylesheet" href="../static/css/setting.css">
 </head>
 
 <body>
@@ -20,19 +20,19 @@
   </header>
   <main>
     <main>
-      <div class="wrapper">
+      <div class="setting">
         <div class="left">
           <div class="left-top">
 
             <div>
-              <p>ユーザー情報</p>
-              <div>
+              <p class="section-title">ユーザー情報</p>
+              <div class="info">
                 <span>ユーザー名</span>
               </div>
-              <div>
+              <div class="info">
                 <span>Email</span>
               </div>
-              <div>
+              <div class="info">
                 <span>Password変更</span>
               </div>
           
@@ -52,6 +52,12 @@
             <input type="text" id="spot" name="spot" placeholder="Value"/>
             <label>所在地</label>
             <select id="station_name" name="station_name" placeholder="Value" />
+              <option value="" selected disabled></option>
+              <option value="tokyo">関東甲信越</option>
+              <option value="osaka">北海道東北</option>
+              <option value="kyoto">関西中部</option>
+              <option value="hiroshima">九州沖縄</option>
+            </select>
             <label>メモ</label>
             <input type="text" id="memo" name="memo" placeholder="Value"/>
             <button type="submit">登録</button>

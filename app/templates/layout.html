@@ -4,14 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SUN Chaser</title>
-  <link rel="stylesheet" href="">
+  <link rel="icon" href="../static/img/clear_day_16dp_EA3323_FILL0_wght400_GRAD0_opsz20.svg" id="favicon">
+  <link rel="stylesheet" href="../static/css/style.css">
 </head>
+
 <body>
-  <header >
+  <header class="header" >
     <h1>SUN Chaser</h1>
+    <div class="shortcut">
+      <a href="serch.html">Serch</a>
+      <a href="setting.html">Setting</a>
+      <a href="login.html">Logout</a>
+    </div>
   </header>
   <main>
-
+    {% block content %}
+    {% endblock%}
   </main>
   <footer>
     <p>&copy;2024 SUN Chaser abyMaya</p>
