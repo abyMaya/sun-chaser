@@ -155,6 +155,18 @@ td span {
   position: absolute;
   top: 5px;
   left: 5px;
-  text-align: left;
-  
+  text-align: left;  
+}
+
+.calendar-title {
+  text-align: center;    /* 水平中央揃え */
+  font-family: 'Amatic SC', cursive; /* フォントを変更 */
+  font-size: 20px;       /* フォントサイズを大きく */
+  color:rgb(19, 30, 229);    /* フォントを太字に */
+  margin-bottom: 20px;   /* カレンダーとの間に余白を作る */
+}
+
+#back_to_serch {
+  text-align: right;
+  margin-right: 5px;
 }

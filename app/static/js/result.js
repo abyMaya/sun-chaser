@@ -11,8 +11,15 @@ function generateCalendar(year, month) {
   const calendarEl = document.getElementById('calendar2');
   const daysInMonth = new Date(year, month, 0).getDate(); // monthは1から12のためそのまま
 
+  // 月を表す名前を取得
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const monthName = monthNames[month - 1];
+
+  // 年月を表示するHTMLを追加
+  let calendarHtml = `<h3 class="calendar-title">${year} ${monthName}</h3>`;  // 年月を表示
+
   // カレンダーのHTML構造を生成
-  let calendarHtml = '<table><thead><tr>';
+  calendarHtml += '<table><thead><tr>';
   for (let i = 0; i < 7; i++) {
     calendarHtml += `<th>${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][i]}</th>`;
   }
