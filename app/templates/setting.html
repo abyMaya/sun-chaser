@@ -19,13 +19,14 @@
     </div>
   </header>
   <main>
-    <main>
       <div class="setting">
         <div class="left">
           <div class="left-top">
 
             <div>
-              <p class="section-title">ユーザー情報</p>
+              <div class="section_title">
+                ユーザー情報
+              </div>
               <div class="info">
                 <span>ユーザー名</span>
               </div>
@@ -46,22 +47,26 @@
 
         </div>
         <div class="right">        
-          <p>観光地登録</p>
-          <form>
-            <label>観光地名</label>
-            <input type="text" id="spot" name="spot" placeholder="Value"/>
-            <label>所在地</label>
-            <select id="station_name" name="station_name" placeholder="Value" />
-              <option value="" selected disabled></option>
-              <option value="tokyo">関東甲信越</option>
-              <option value="osaka">北海道東北</option>
-              <option value="kyoto">関西中部</option>
-              <option value="hiroshima">九州沖縄</option>
-            </select>
-            <label>メモ</label>
-            <input type="text" id="memo" name="memo" placeholder="Value"/>
-            <button type="submit">登録</button>
-          </form>
+          <div class="section_title">
+            観光地登録
+          </div>            
+          <div>
+            <form class="spot_register">
+              <label>観光地名</label>
+              <input type="text" id="spot" name="spot" placeholder="Value"/>
+              <label id="place">所在地</label>
+              <select id="station_name" name="station_name" placeholder="Value">
+                <option value="" selected disabled></option>
+                <option value="tokyo">関東甲信越</option>
+                <option value="osaka">北海道東北</option>
+                <option value="kyoto">関西中部</option>
+                <option value="hiroshima">九州沖縄</option>
+              </select>
+              <label>メモ</label>
+              <input type="text" id="memo" name="memo" placeholder="Value"/>
+              <button type="submit">登録</button>
+            </form>
+          </div>
         </div>
       </div>  
     

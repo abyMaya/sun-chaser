@@ -109,10 +109,18 @@ button[type="submit"]:hover {
 
 
 form label, form input {
+  text-align: left; /* テキストを左寄りに */
+  width: 100%; /* 必要に応じて幅を指定 */
   display: block;
   margin-bottom: 5px;
 }
 
+form select {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
 
 #form_and_btn {
   width: 600px;

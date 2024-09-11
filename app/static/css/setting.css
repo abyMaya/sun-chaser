@@ -1,19 +1,12 @@
 @charset "utf-8";
 
-.result_title {
-  font-family: 'Amatic SC', cursive;
-  font-size: large;
-  text-align: center;
-  color: rgb(237, 202, 202);
-}
 .setting {
+  width: 1000px; /* 固定幅を設定 */
   display: flex;
-  justify-content: center;
-  
-  
+  justify-content: center; /* 中央寄せ */
   padding: 0 100px;
   box-sizing: border-box;
-  margin-top: 30px;
+  margin: 30px auto; /* 自動マージンで中央に配置 */
 }
 
 .left {
@@ -29,8 +22,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-bottom: 10px;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
   border: 0.3px solid hwb(0 89% 9%);
   border-radius: 8px;
@@ -45,25 +37,10 @@
   box-sizing: border-box;
   }
 
-.left-top > div {
-  display: flex;
-  flex-direction: column; /* 縦並び */
-  
-}
-
-.left-top span {
-  margin-bottom: 10px;
-}
-
-.left-top #keep_serch {
-  width: 150px;
-  margin: 0 auto;
-  cursor: pointer;
-}
 .right {
   flex: 1;
   text-align: center;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
   margin-top: 50px;
   border: 0.3px solid hwb(0 89% 9%);
@@ -71,28 +48,38 @@
   box-shadow: 1px 2px 5px hwb(0 88% 11%);
 }
 
-.wrapper > div {
-  margin: 0 10px;
-}
-
-#serch #details #spots {
-  width: 85%; 
-  padding: 10px 15px;
-  font-size: 13px;
-  margin: 10px auto;
-  box-sizing: border-box;
-  border: 0.3px solid hwb(0 89% 9%);
-  border-radius: 8px;
-}
-
 .info {
-  width: 85%; 
-  padding: 10px 15px;
+  width: 100%; 
+  padding: 10px;
   font-size: 13px;
-  margin: 10px auto;
+  margin: 15px auto;
   box-sizing: border-box;
   border: 0.3px solid hwb(0 89% 9%);
   border-radius: 8px;
+  background: linear-gradient(45deg, rgb(237, 202, 202), rgb(237, 225, 225));
+  color: rgb(19, 30, 229);
+}
+
+.spot_register {
+  width: 100%;  
+  display:flex;
+  flex-direction: column;
+  font-size: 13px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.spot_register input[type="text"],
+.spot_register select {
+  width: 100%; /* フォーム要素全体を同じ幅に */  
+  box-sizing: border-box;  
+}
+
+.left-bottom {
+  width: 80%;
+  margin: 30px auto;
+  
 }
 
 
