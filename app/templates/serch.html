@@ -13,57 +13,56 @@
     <h1>SUN Chaser</h1>
     <div class="shortcut">
       <a href="setting.html">Setting</a>
-      <a href="#">Logout</a>
+      <a href="login.html">Logout</a>
     </div>
   </header>
   <main>
-    <div id="serch">
-      <div id="details">
-        <label>Select Spot</label>
+    <div id="form_and_btn">
+      <div id="serch">
+        <div id="details">
+          <label>Select Spot</label>
+          <form>
+            <select id="spots">
+              <option value="" selected disabled></option>
+              <option>東京タワー</option>
+              <option>鎌倉</option>
+              <option>上高地</option>
+              <option>日光</option>
+            </select>
+          </form>
+          
+        </div>
+            
+        <img src="../static/img/add_20dp.png">
+        <div id="details">
+          <form id="search-form" action="result.html">
+            <label>Select Month</label>
+            <input type="month" id="month" name="month" required>      
+          </form>
+        </div>
+      </div>
+       
+      <button id="serch-button" type="submit" onclick="submitForm()">Find the SUN!!</button>
+          </form>
+      <div id="options">
+        <a href="setting.html" id="spotregister">観光地新規登録</a>
         <form>
-          <select id="spots">
-            <option value="" selected disabled></option>
-            <option>東京タワー</option>
-            <option>鎌倉</option>
-            <option>上高地</option>
-            <option>日光</option>
+          <select id="histories">
+            <option>保存済みの検索条件</option>
+            <option>東京タワー＋2024/10</option>
+            <option>鎌倉＋2024/10</option>
+            <option>上高地＋2024/10</option>
+            <option>日光＋2024/10</option>
           </select>
         </form>
-        
-      </div>
-          
-      <img src="../static/img/add_20dp.png">
-      <div id="details">
-        <form>
-          <label>Select Month</label>
-          <input type="month">      
-        </form>
-      </div>
-
-    </div>
-     
-
-    <button type="submit" >Find the SUN!!</button>
-
-    <div id="options">
-      <a href="setting.html" id="spotregister">観光地新規登録</a>
-      <form>
-        <select id="histories">
-          <option>保存済みの検索条件</option>
-          <option>東京タワー＋2024/10</option>
-          <option>鎌倉＋2024/10</option>
-          <option>上高地＋2024/10</option>
-          <option>日光＋2024/10</option>
-        </select>
-      </form>
-    </div>
-    
-
-
+      </div> 
+    </div>   
     
   </main>
   <footer>
     <p>&copy;2024 SUN Chaser abyMaya</p>
   </footer>
+
+  <script src="../static/js/serch.js"></script>
 </body>
 </html>
