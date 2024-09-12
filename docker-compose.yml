@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Docker/Flask/Dockerfile
-    container_name: flask-container
+    container_name: app
     ports:
       - "5000:5000"
     depends_on:
@@ -19,7 +19,7 @@ services:
     build:
       context: .
       dockerfile: Docker/MySQL/Dockerfile
-    container_name: mysql-container
+    container_name: db
     ports:
       - "3306:3306"
     environment:
@@ -33,7 +33,7 @@ services:
 
   web:
     image: nginx:alpine
-    container_name: nginx-container
+    container_name: web
     ports:
       - "80:80"
     volumes:
