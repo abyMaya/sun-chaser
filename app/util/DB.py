@@ -1,18 +1,22 @@
-import pymysql
+from flask import abort, app
+import pymysql # type: ignore
 
 class DB:
-    @staticmethod
-    def get_connection():
-        connection = None
+    
+    def getConnection():
+        conn = None
         try:
-            connection = pymysql.connect(
-                host="db",
-                db="SUN_Chaser",
-                user="admin",
-                password="chaser",
-                charset="utf8",
-                cursorclass=pymysql.cursors.DictCursor
+            conn = pymysql.connect(
+            host="db",
+            db="SUN_Chaser",
+            user="admin",
+            password="chaser",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor
             )
+            print("getConnectionDB接続成功")
+            return conn
         except Exception as e:
-            print(f"エラーが発生しました: {str(e)}")
-            return connection
+            print(f"getConnectionDB接続エラー: {str(e)}")
+            conn.close()
+
