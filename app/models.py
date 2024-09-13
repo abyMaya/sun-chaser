@@ -1,4 +1,19 @@
+from flask import abort
 import pymysql
 from util.DB import DB
 
 class dbConnect:
+    def createUser(user_id, user_name, email, password, created_at):
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO users (user_id, user_name, email, password, created_at) VALUES (%s, %s, %s, %s, %s)";
+            cur.execute(sql, (user_id, user_name, email, password, created_at))
+            conn.commit()
+        except Exception as e:
+            print(e + 'が発生しています')
+            abort(500)
+        finally:
+            cur.close()
+
+    
