@@ -11,7 +11,7 @@ app.permanent_session_lifetime = timedelta(days=30)
 
 # ランディングページ表示
 @app.route('/')
-def sun_chaser():
+def home():
     return render_template('login.html')
 
 # 新規登録ページ表示
@@ -20,7 +20,7 @@ def signup():
     return render_template('signup.html')
 
 # 新規登録処理
-@app.route('/signup', method=['POST'])
+@app.route('/signup', methods=['POST'])
 def userSignup():
     user_name = request.form.get('user_name')
     email = request.form.get('email')
@@ -43,7 +43,7 @@ def userSignup():
         if DBuser != None:
             flash('既に登録されています')
         else:
-            dbConnect.createUser(user_id, username, email, password)
+            dbConnect.createUser(user_id, user_name, email, password)
             UserId = str(user_id)
             session['user_id'] = UserId
             return redirect('/')
@@ -57,8 +57,8 @@ def userSignup():
 
 
 # ログインページ表示
-@app.route('/')
-def sun_chaser():
+@app.route('/login')
+def login():
     return render_template('login.html')
 
 # ログイン機能
