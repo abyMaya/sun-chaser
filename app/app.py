@@ -90,9 +90,12 @@ def main():
     if user_id is None:
         return redirect('/login')
     return render_template('serch.html', user_id=user_id)
-
         
-# ログアウト機能
+# ログアウト処理
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/login')
 
 # ユーザー名変更
 
