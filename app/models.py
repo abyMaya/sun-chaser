@@ -43,4 +43,17 @@ class dbConnect:
                 cur.close()  
             if conn:
                 conn.close()
-       
+
+    def getUserById(user_id):
+        connection = DB.getConnection()
+        try:
+            with connection.cursor() as cursor:
+                sql = "SELECT * FROM Users WHERE user_id = %s"
+                cursor.execute(sql, (user_id,))
+                user = cursor.fetchone()
+                return user
+        except Exception as e:
+            print(f"Error fetching user: {str(e)}")
+            return None
+        finally:
+            connection.close()
