@@ -97,6 +97,19 @@ def logout():
     session.clear()
     return redirect('/login')
 
+# ユーザー情報表示
+@app.route('/profile')
+def profile():
+    user_id = session.get("user_id")
+    if user_id is None:
+        return redirect('/login')
+    
+    user = dbConnect.getUserById(user_id)
+    if user is None:
+        return redirect('/login')
+    
+    return render_template('setting.html', user=user)
+
 # ユーザー名変更
 
 # 観光地登録
