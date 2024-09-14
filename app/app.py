@@ -14,10 +14,6 @@ app = Flask(__name__)
 app.secret_key = uuid.uuid4().hex
 app.permanent_session_lifetime = timedelta(days=30)
 
-# ランディングページ表示
-@app.route('/')
-def home():
-    return render_template('login.html')
 
 # 新規登録ページ表示
 @app.route('/signup')
@@ -57,14 +53,7 @@ def userSignup():
             dbConnect.createUser(user_id, user_name, email, password, created_at)
             session['user_id'] = user_id
             return redirect('/')
-    return redirect('/signup')
-
-   
-
-
-
-
-    
+    return redirect('/signup')   
 
 
 # ログインページ表示
@@ -72,8 +61,37 @@ def userSignup():
 def login():
     return render_template('login.html')
 
-# ログイン機能
 
+# ログイン処理
+@app.route('/login', methods=['POST'])
+def userLogin():
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    if email == '' or password == '':
+        flash('すべてのフォームに入力してください')
+    else:
+        user = dbConnect.getUser(email)
+        if user is None:
+            flash('このユーザーは登録されていません')
+        else:
+            hashPassword = hashlib.sha256(password.encode('utf-8')).hexdigest()
+            if hashPassword != user["password"]:
+                flash('パスワードが間違っています')
+            else:
+                session['user_id'] = user["user_id"] 
+                return redirect('/')
+    return redirect('/login')
+
+# メインページ表示
+@app.route('/')
+def main():
+    user_id = session.get("user_id")
+    if user_id is None:
+        return redirect('/login')
+    return render_template('serch.html', user_id=user_id)
+
+        
 # ログアウト機能
 
 # ユーザー名変更
