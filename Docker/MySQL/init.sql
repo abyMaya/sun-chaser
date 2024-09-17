@@ -46,4 +46,32 @@ CREATE TABLE WeatherData(
     FOREIGN KEY (station_id) REFERENCES WeatherStations(station_id)
 );
 
+-- Regions WeatherStationsマスタ登録
+-- https://www.data.jma.go.jp/tokyo/shosai/chiiki/tenki/47670yokohama.html
+INSERT INTO Regions VALUES (0, '関東甲信地方');
+INSERT INTO Regions VALUES (0, '東海地方');
+INSERT INTO Regions VALUES (0, '北陸地方');
+
+INSERT INTO WeatherStations VALUES (0, '東京', 1);
+INSERT INTO WeatherStations VALUES (0, '横浜', 1);
+INSERT INTO WeatherStations VALUES (0, '銚子', 1);
+INSERT INTO WeatherStations VALUES (0, '熊谷', 1);
+INSERT INTO WeatherStations VALUES (0, '水戸', 1);
+INSERT INTO WeatherStations VALUES (0, '宇都宮', 1);
+INSERT INTO WeatherStations VALUES (0, '前橋', 1);
+INSERT INTO WeatherStations VALUES (0, '長野', 1);
+INSERT INTO WeatherStations VALUES (0, '甲府', 1);
+
+INSERT INTO WeatherStations VALUES (0, '静岡', 2);
+INSERT INTO WeatherStations VALUES (0, '名古屋', 2);
+INSERT INTO WeatherStations VALUES (0, '岐阜', 2);
+INSERT INTO WeatherStations VALUES (0, '津', 2);
+
+INSERT INTO WeatherStations VALUES (0, '新潟', 3);
+INSERT INTO WeatherStations VALUES (0, '富山', 3);
+INSERT INTO WeatherStations VALUES (0, '金沢', 3);
+INSERT INTO WeatherStations VALUES (0, '福井', 3);
+
+
+
 
