@@ -50,7 +50,9 @@
 
 .info {
   width: 100%; 
-  padding: 10px;
+  padding: 10px 70px;
+  display: flex;
+  justify-content: space-between;
   font-size: 13px;
   margin: 15px auto;
   box-sizing: border-box;
@@ -79,7 +81,20 @@
 .left-bottom {
   width: 80%;
   margin: 30px auto;
-  
+
 }
 
+#edit {
+  width: 20px;
+  height: 20px;
+  cursor:pointer;
+}
+
+#save {
+  width: 20px;
+  height: 20px;
+  cursor:pointer;
+  display: none;
+  
+}
 
