@@ -111,6 +111,20 @@ def profile():
     return render_template('setting.html', user=user)
 
 # ユーザー名変更
+@app.route('/update-username', methods=['POST'])
+def update_username():
+    data = request.get_json()
+    new_username = data.get('username')
+
+    user_id = session.get("user_id")
+    if user_id is None:
+        return redirect('/login')
+    
+    user = dbConnect.getUserById(user_id)
+    if user :
+        dbConnect.updateUser(user_id, new_username)
+
+    return jsonify(success=True)
 
 # 観光地登録
 
