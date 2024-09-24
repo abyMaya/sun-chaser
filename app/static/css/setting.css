@@ -76,7 +76,12 @@
 .spot_register select {
   width: 100%; /* フォーム要素全体を同じ幅に */  
   box-sizing: border-box;  
+  border: 0.3px solid hwb(0 89% 9%);
+  border-radius: 8px;
+  box-shadow: 1px 2px 5px hwb(0 88% 11%);
 }
+
+
 
 .left-bottom {
   width: 80%;
