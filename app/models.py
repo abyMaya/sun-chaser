@@ -76,5 +76,62 @@ class dbConnect:
             if conn:
                 conn.close()
 
+    @staticmethod
+    def get_regions():
+        conn = None
+        cursor = None
+        regions = []  # 取得する地域を一つに設定
+        try:
+            print("Connecting to the database...", flush=True)  # 接続開始のログ
+            conn = DB.getConnection()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
+            
+            sql = "SELECT region_id, region_name FROM Regions;"  # SQLクエリ
+            print("Executing SQL:", sql, flush=True)  # SQL実行前のログ
+            cursor.execute(sql)
+            regions = cursor.fetchall()  # 単一の行を取得
+
+            print("Fetched regions:", regions, flush=True)  # 取得した地域を表示
+
+            if not regions:  # 取得したデータが空の場合
+                print("No regions found in the database.", flush=True) 
+                return []  # Noneを返す
+
+        except pymysql.MySQLError as e:  # MySQL関連のエラーをキャッチ
+            print(f"MySQL error: {str(e)}", flush=True)  # エラーメッセージを表示
+            abort(500)  # エラーが発生した場合はHTTP 500エラーを返す
+        except Exception as e:  # その他のエラーをキャッチ
+            print(f"Error fetching regions: {str(e)}", flush=True)  # エラーメッセージを表示
+            abort(500)  # エラーが発生した場合はHTTP 500エラーを返す
+        finally:
+            if cursor:
+                cursor.close()  # カーソルを閉じる
+            if conn:
+                conn.close()  # 接続を閉じる
+                
+        return [{'region_id': region['region_id'], 'region_name': region['region_name']} for region in regions]  # 複数の地域を返すelse None  # 取得した地域を返す
+        
+    # @staticmethod
+    # def get_stations(region_id):
+    #     conn = None
+    #     cur = None
+    #     stations = []
+    #     try:
+    #         conn = DB.getConnection()
+    #         cur = conn.cursor()
+    #         sql = "SELECT station_id, station_name FROM Stations WHERE region_id = %s;"
+    #         cur.execute(sql, (region_id,))  # region_idを正しく使用
+    #         stations = cur.fetchall()
+    #     except Exception as e:
+    #         print(e + 'が発生しています')
+    #         abort(500)
+    #     finally:
+    #         if cur:
+    #             cur.close()
+    #         if conn:
+    #             conn.close()
+
+    #     return [{'id': station[0], 'name': station[1]} for station in stations]
+
 
             

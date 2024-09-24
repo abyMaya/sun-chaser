@@ -127,6 +127,35 @@ def update_username():
     return jsonify(success=True)
 
 # 観光地登録
+# Regionsを取得
+@app.route('/get-regions', methods=['GET'])
+def fetch_regions():
+    region = dbConnect.get_regions()  # get_regionsメソッドを呼び出す
+    print("Region returned:", region, flush=True)  # 取得した地域のログ
+    if region is None:
+        return jsonify({'error': '地域の取得に失敗しました'}), 500
+    return jsonify(region)  # 地域データをJSON形式で返す
+
+# # テスト用
+# @app.route('/test-get-regions', methods=['GET'])
+# def test_get_regions():
+#     print("Testing get_regions function...", flush=True)  # テスト呼び出しのログ
+#     region = dbConnect.get_regions()  # get_regionsメソッドを呼び出す
+#     print("Region returned:", region, flush=True)  # 取得した地域のログ
+#     if region is None:
+#         return jsonify({'error': '地域の取得に失敗しました'}), 500
+#     return jsonify(region)  # 地域データをJSON形式で返す
+
+# # Stationsを取得
+# @app.route('/get-stations/<region_id>', methods=['GET'])  # region_idをURLパラメータとして受け取る
+# def get_stations(region_id):
+#     stations = dbConnect.get_stations(region_id)  # 引数にregion_idを渡す
+#     if stations is None:
+#         return jsonify({'error': '気象台の取得に失敗しました'}), 500
+#     return jsonify(stations)
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 # 日程選択
 
