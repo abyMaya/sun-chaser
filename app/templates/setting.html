@@ -65,10 +65,14 @@
                 
               </select>
               <!-- 選択された気象台の名前を表示するための要素 -->
-              <div id="selectedStationName"></div>
+              <label>気象台</label>
+              <select id="station" name="station" required>
+                  <option value="" selected disabled>気象台を選択してください</option>
+                  <!-- ここに気象台の選択肢が追加されます -->
+              </select>
               
               <label>メモ</label>
-              <input type="text" id="memo" name="memo" placeholder="Value"/>
+              <input type="text" id="memo" name="memo" placeholder="詳細情報を入力してください"/>
               <button type="submit">登録</button>
             </form>
           </div>
