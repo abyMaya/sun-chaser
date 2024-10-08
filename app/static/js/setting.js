@@ -47,8 +47,8 @@ save.addEventListener('click', async () => {
 // 地域を取得
 document.addEventListener("DOMContentLoaded", async () => {
   const locationSelect = document.getElementById('location');
-  const selectedStationDisplay = document.getElementById('selectedStationName');  // 表示用の変数名変更
-
+  const stationSelect = document.getElementById('station'); 
+  
   // 地域を取得
   try {
       const response = await fetch('/get-regions');
@@ -72,24 +72,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 地域選択時のイベント
   locationSelect.addEventListener('change', async function() {
     const regionId = this.value;
-
+    
     if (regionId) {
         try {
-            const response = await fetch(`/get-stations/${regionId}`);
-            if (!response.ok) {
-                throw new Error('Network response was not ok: ' + response.statusText);
-            }
+            
 
+            const response = await fetch(`/get-stations/${regionId}`);
             const stations = await response.json();
 
-            // プルダウンメニューをクリアし、気象台の選択肢を追加
-            this.innerHTML = `<option value="" selected disabled>気象台を選択してください</option>`;
-            
+
+            stationSelect.innerHTML = '<option value="" selected disabled>気象台を選択してください</option>';
+
             stations.forEach(station => {
-                const option = document.createElement('option');
-                option.value = station.station_id; 
-                option.textContent = station.station_name; 
-                this.appendChild(option);
+              const option = document.createElement('option');
+              option.value = station.station_id;
+              option.textContent = station.station_name;
+              console.log('Adding option:', option); 
+              stationSelect.appendChild(option);
             });
 
         } catch (error) {
@@ -97,14 +96,5 @@ document.addEventListener("DOMContentLoaded", async () => {
             alert('気象台の取得に失敗しました');
         }
     }
-  });
-
-  // 気象台選択時のイベント
-  locationSelect.addEventListener('change', function() {
-    const selectedStationId = this.value; // 選択された気象台のIDを取得
-    const selectedStationName = this.options[this.selectedIndex].text; // 選択された気象台名を取得
-
-    // 選択された気象台名を表示用の要素に反映
-    selectedStationDisplay.textContent = `選択された気象台: ${selectedStationName}`;
   });
 });
