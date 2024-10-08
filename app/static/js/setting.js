@@ -47,58 +47,64 @@ save.addEventListener('click', async () => {
 // 地域を取得
 document.addEventListener("DOMContentLoaded", async () => {
   const locationSelect = document.getElementById('location');
+  const selectedStationDisplay = document.getElementById('selectedStationName');  // 表示用の変数名変更
 
+  // 地域を取得
   try {
-      console.log("Fetching regions..."); // デバッグ用ログ
       const response = await fetch('/get-regions');
-      
-      // レスポンスの確認
       if (!response.ok) {
           throw new Error('Network response was not ok: ' + response.statusText);
       }
 
       const regions = await response.json();
-      console.log("Fetched regions:", regions); // デバッグ用ログ
 
       regions.forEach(region => {
           const option = document.createElement('option');
           option.value = region.region_id;  // region_idをvalueに設定
           option.textContent = region.region_name;  // region_nameを表示
-          locationSelect.appendChild(option);
+          locationSelect.appendChild(option); // 地域のプルダウンに追加
       });
   } catch (error) {
       console.error('Error fetching regions:', error);
-      alert('地域の取得に失敗しました'); // ここでエラーメッセージを表示
+      alert('地域の取得に失敗しました');
   }
-});
 
   // 地域選択時のイベント
-//   locationSelect.addEventListener('change', async function() {
-//       const region = this.value;
+  locationSelect.addEventListener('change', async function() {
+    const regionId = this.value;
 
-//       const stationSelect = document.getElementById('station_name');
-//       stationSelect.innerHTML = '<option value="" selected disabled>気象台を選択してください</option>';
+    if (regionId) {
+        try {
+            const response = await fetch(`/get-stations/${regionId}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
 
-//       if (region) {
-//           try {
-//               console.log(`Fetching stations for region: ${region}`); // デバッグ用ログ
-//               const response = await fetch(`/get-stations/${region}`);
+            const stations = await response.json();
 
-//               if (!response.ok) {
-//                   throw new Error('Network response was not ok: ' + response.statusText);
-//               }
+            // プルダウンメニューをクリアし、気象台の選択肢を追加
+            this.innerHTML = `<option value="" selected disabled>気象台を選択してください</option>`;
+            
+            stations.forEach(station => {
+                const option = document.createElement('option');
+                option.value = station.station_id; 
+                option.textContent = station.station_name; 
+                this.appendChild(option);
+            });
 
-//               const stations = await response.json();
-//               stations.forEach(station => {
-//                   const option = document.createElement('option');
-//                   option.value = station.station_id;  // 駅IDをvalueに設定
-//                   option.textContent = station.station_name;  // 駅名を表示
-//                   stationSelect.appendChild(option);
-//               });
-//           } catch (error) {
-//               console.error('Error fetching stations:', error);
-//               alert('気象台の取得に失敗しました'); // ここで気象台のエラーメッセージを表示
-//           }
-//       }
-//   });
-// });
+        } catch (error) {
+            console.error('Error fetching stations:', error);
+            alert('気象台の取得に失敗しました');
+        }
+    }
+  });
+
+  // 気象台選択時のイベント
+  locationSelect.addEventListener('change', function() {
+    const selectedStationId = this.value; // 選択された気象台のIDを取得
+    const selectedStationName = this.options[this.selectedIndex].text; // 選択された気象台名を取得
+
+    // 選択された気象台名を表示用の要素に反映
+    selectedStationDisplay.textContent = `選択された気象台: ${selectedStationName}`;
+  });
+});
