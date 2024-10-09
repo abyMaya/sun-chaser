@@ -54,7 +54,7 @@
             観光地登録
           </div>            
           <div>
-            <form class="spot_register">
+            <form class="spot_register" action="/spot-register" method="POST">
               <label>観光地名</label>
               <input type="text" id="spot" name="spot" placeholder="Value"/>
 
@@ -71,8 +71,8 @@
                   <!-- ここに気象台の選択肢が追加されます -->
               </select>
               
-              <label>メモ</label>
-              <input type="text" id="memo" name="memo" placeholder="詳細情報を入力してください"/>
+              <!-- <label>メモ</label>
+              <input type="text" id="memo" name="memo" placeholder="詳細情報を入力してください"/> -->
               <button type="submit">登録</button>
             </form>
           </div>
