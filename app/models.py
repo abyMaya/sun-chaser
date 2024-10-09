@@ -140,5 +140,23 @@ class dbConnect:
 
         return [{'station_id': station['station_id'], 'station_name': station['station_name']} for station in stations]
 
-
+    def createSpot(spot_name, region_id, station_id, created_at):
+        conn = None
+        cur = None
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+            sql = "INSERT INTO Spots (spot_name, region_id, station_id, created_at) VALUES (%s, %s, %s, %s);"
+            cur.execute(sql, (spot_name, region_id, station_id, created_at))
+            conn.commit()
+            print("データが挿入されました", flush=True)
+            
+        except Exception as e:
+            print(e + 'が発生しています', flush=True)
+            abort(500)
+        finally:
+            if cur:
+                cur.close()  
+            if conn:
+                conn.close()
             
