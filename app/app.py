@@ -159,6 +159,26 @@ def get_stations(region_id):
 if __name__ == '__main__':
     app.run(debug=True)
 
+# 観光地登録処理
+@app.route('/spot-register', methods=['GET', 'POST'])
+def spotRegister():
+    if request.method == 'GET':
+        # フォームを表示するHTMLをレンダリング
+        return render_template('setting.html')
+
+    spot = request.form.get('spot')
+    location = request.form.get('location')
+    station = request.form.get('station')
+    
+    if spot == '' or location == '' or station == '' :
+        flash('全てのフォームに入力してください')
+        return redirect('/spot-register')
+    
+    else:
+        created_at = datetime.now()
+        dbConnect.createSpot(spot, location, station, created_at)
+        return redirect('/')
+   
 # 日程選択
 
 # 観光地選択
