@@ -159,4 +159,38 @@ class dbConnect:
                 cur.close()  
             if conn:
                 conn.close()
+    
+    @staticmethod
+    def get_spots():
+        conn = None
+        cursor = None
+        regions = []  # 取得する地域を一つに設定
+        try:
+            print("Connecting to the database...", flush=True)  # 接続開始のログ
+            conn = DB.getConnection()
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
             
+            sql = "SELECT spot_id, spot_name FROM Spots;"  # SQLクエリ
+            print("Executing SQL:", sql, flush=True)  # SQL実行前のログ
+            cursor.execute(sql)
+            spots = cursor.fetchall()  # 単一の行を取得
+
+            print("Fetched spots:", spots, flush=True)  # 取得した地域を表示
+
+            if not spots:  # 取得したデータが空の場合
+                print("No spots found in the database.", flush=True) 
+                return []  # Noneを返す
+
+        except pymysql.MySQLError as e:  # MySQL関連のエラーをキャッチ
+            print(f"MySQL error: {str(e)}", flush=True)  # エラーメッセージを表示
+            abort(500)  # エラーが発生した場合はHTTP 500エラーを返す
+        except Exception as e:  # その他のエラーをキャッチ
+            print(f"Error fetching spots: {str(e)}", flush=True)  # エラーメッセージを表示
+            abort(500)  # エラーが発生した場合はHTTP 500エラーを返す
+        finally:
+            if cursor:
+                cursor.close()  # カーソルを閉じる
+            if conn:
+                conn.close()  # 接続を閉じる
+                
+        return [{'spot_id': spot['spot_id'], 'spot_name': spot['spot_name']} for spot in spots]  
