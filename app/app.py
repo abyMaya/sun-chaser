@@ -182,6 +182,15 @@ def spotRegister():
 # 日程選択
 
 # 観光地選択
+@app.route('/get-spots', methods=['GET'])
+def fetch_spots():
+    spot = dbConnect.get_spots()  
+
+    print("Spots returned:", spot, flush=True)  
+
+    if spot is None:
+        return jsonify({'error': '観光地の取得に失敗しました'}), 500
+    return jsonify(spot)  
 
 # 天気データ結果表示
 
