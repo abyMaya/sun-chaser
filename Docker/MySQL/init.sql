@@ -39,10 +39,10 @@ CREATE TABLE Spots(
 CREATE TABLE WeatherData(
     weather_id INT PRIMARY KEY AUTO_INCREMENT,
     station_id INT NOT NULL,
-    weather_date DATETIME NOT NULL,
-    sunny_rate DECIMAL(5,4),
-    cloudy_rate DECIMAL(5,4),
-    rainny_rate DECIMAL(5,4),
+    weather_date DATE NOT NULL,
+    sunny_rate DECIMAL(6,4),
+    cloudy_rate DECIMAL(6,4),
+    rainny_rate DECIMAL(6,4),
     FOREIGN KEY (station_id) REFERENCES WeatherStations(station_id)
 );
 
