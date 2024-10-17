@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request, flash, redirect, session, app, flash, abort
+from flask import Flask, jsonify, render_template, request, flash, redirect, session, app, abort
 import uuid, re, hashlib
 from datetime import datetime, timedelta
 
@@ -192,8 +192,38 @@ def fetch_spots():
         return jsonify({'error': '観光地の取得に失敗しました'}), 500
     return jsonify(spot)  
 
-# 天気データ結果表示
+# 天気データ結果取得
+@app.route('/get_sunny_rate', methods=["GET"])
+def get_sunny_rate_api():
+    spot_id = request.args.get('spot_id')
+    month = request.args.get('month')
 
+    if not spot_id or not month:
+        return jsonify({"error": "Invalid parameters"}), 400
+    
+    print(f"Received spot_id: {spot_id}, month: {month}", flush=True)
+
+    sunny_rate_data = dbConnect.get_sunny_rate(spot_id, month)
+
+    if not sunny_rate_data:
+        return jsonify({"error": "No data found for the given parameters"}),
+  
+    print("Sunny rate data:", sunny_rate_data, flush=True) 
+    return jsonify(sunny_rate_data)
+
+# 結果ページ表示
+@app.route('/result')
+def result():
+    spot = request.args.get('spot')
+    year = request.args.get('year')
+    month = request.args.get('month')
+
+    return render_template('result.html', spot=spot, year=year, month=month)
+
+
+
+
+ 
 # 検索条件保存
 
 # DB接続確認エンドポイント
