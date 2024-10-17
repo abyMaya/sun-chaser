@@ -18,28 +18,29 @@
   </header>
   <main>
     <div id="form_and_btn">
-      <div id="serch">
-        <div id="details">
-          <label for="spotsSelect">Select Spot</label>
-          <form>
+      <form id="search-form"> <!-- 一つのフォームに統一 -->
+        <div id="serch">
+          <div id="details">
+            <label for="spotsSelect">Select Spot</label>
             <select id="spotsSelect" name="spotsSelect" required>
               <option value="" selected disabled></option>
+              <!-- スポットオプションをここに追加 -->
             </select>
-          </form>
-          
-        </div>
-            
-        <img src="../static/img/add_20dp.png">
-        <div id="details">
-          <form id="search-form" action="result.html">
+          </div>
+
+          <img src="../static/img/add_20dp.png">
+          <div id="details">
             <label>Select Month</label>
             <input type="month" id="month" name="month" required>      
-          </form>
+          </div>
         </div>
-      </div>
-       
-      <button id="serch-button" type="submit" onclick="submitForm()">Find the SUN!!</button>
-          </form>
+
+        <div id="button-container">
+          <button id="serch-button" type="submit">Find the SUN!!</button>
+        </div>
+      </form> <!-- ここでフォームを閉じる -->
+      
+          <!-- </form> -->
       <div id="options">
         <a href="/profile" id="spotregister">観光地新規登録</a>
         <form>
