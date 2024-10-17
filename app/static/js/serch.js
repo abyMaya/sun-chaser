@@ -11,10 +11,13 @@ document.getElementById('serch-button').addEventListener('click', function(event
   if (spotInput && monthInput) {
     // yearとmonthを分割してクエリパラメータに渡す
     const [year, month] = monthInput.split('-');
-    const url = `result.html?spot=${spotInput}&year=${year}&month=${month}`;
+
+    
+    const url = `/result?spot=${spotInput}&year=${year}&month=${month}`;
 
     // 結果ページに遷移
     window.location.href = url;
+
   } else {
       alert("観光地と月を選択してください");
   }
