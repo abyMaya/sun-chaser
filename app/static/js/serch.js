@@ -3,17 +3,20 @@
 document.getElementById('serch-button').addEventListener('click', function(event) {
   event.preventDefault();  // デフォルトの動作を停止
 
-  // フォームから年月の値を取得
+  // スポット年月の値を取得
+  const spotInput = document.getElementById('spotsSelect').value;
   const monthInput = document.getElementById('month').value;
 
   // 必要な値が選択されているか確認
-  if (monthInput) {
+  if (spotInput && monthInput) {
     // yearとmonthを分割してクエリパラメータに渡す
     const [year, month] = monthInput.split('-');
-    const url = `result.html?year=${year}&month=${month}`;
+    const url = `result.html?spot=${spotInput}&year=${year}&month=${month}`;
+
+    // 結果ページに遷移
     window.location.href = url;
   } else {
-      alert("Please select a month.");
+      alert("観光地と月を選択してください");
   }
 });
 
