@@ -194,3 +194,44 @@ class dbConnect:
                 conn.close()  # 接続を閉じる
                 
         return [{'spot_id': spot['spot_id'], 'spot_name': spot['spot_name']} for spot in spots]  
+
+    def get_sunny_rate(spot_id, month):
+        conn = None
+        cursor = None
+        sunny_rate_data = []
+
+        try:
+            print("Connecting to the database...", flush=True)
+            conn = dbConnect.getConnection()
+            cursor = conn.cursor()
+            
+            sql = """
+            SELECT DATE_FORMAT(date, '%m') AS month, DATE_FORMAT(date, '%d') AS day, sunny_rate
+            FROM WeatherData
+            WHERE spot_id = %s AND MONTH(date) = %s;
+            """
+
+            month_number = month.split('-')[1]
+            print(f"Executing SQL: {sql} with spot_id: {spot_id}, month: {month_number}", flush=True)
+            cursor.execute(sql, (spot_id, month_number))
+
+            sunny_rate_data = cursor.fetchall()
+
+            print("Fetched sunny rate data:", sunny_rate_data, flush=True)
+
+            return sunny_rate_data
+        
+        except pymysql.MySQLError as e:
+            print(f"MySQL error: {str(e)}", flush=True)
+            abort(500)
+        except Exception as e:
+            print(f"Error fetching sunny rate data: {str(e)}", flush=True)
+            abort(500)
+        finally:
+            if cursor:
+                cursor.close()
+            if conn:
+                conn.close()
+
+        return sunny_rate_data
+
