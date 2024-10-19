@@ -195,7 +195,7 @@ class dbConnect:
                 
         return [{'spot_id': spot['spot_id'], 'spot_name': spot['spot_name']} for spot in spots]  
 
-    def get_sunny_rate(spot_id, month):
+    def get_sunny_rate(station_id, month):
         conn = None
         cursor = None
         sunny_rate_data = []
@@ -206,14 +206,14 @@ class dbConnect:
             cursor = conn.cursor()
             
             sql = """
-            SELECT DATE_FORMAT(date, '%m') AS month, DATE_FORMAT(date, '%d') AS day, sunny_rate
+            SELECT DATE_FORMAT(weather_date, '%m') AS month, DATE_FORMAT(weather_date, '%d') AS day, sunny_rate
             FROM WeatherData
-            WHERE spot_id = %s AND MONTH(date) = %s;
+            WHERE station_id = %s AND MONTH(weather_date) = %s;
             """
 
             month_number = month.split('-')[1]
-            print(f"Executing SQL: {sql} with spot_id: {spot_id}, month: {month_number}", flush=True)
-            cursor.execute(sql, (spot_id, month_number))
+            print(f"Executing SQL: {sql} with station_id: {station_id}, month: {month_number}", flush=True)
+            cursor.execute(sql, (station_id, month_number))
 
             sunny_rate_data = cursor.fetchall()
 
