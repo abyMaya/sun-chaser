@@ -1,6 +1,4 @@
-
-
-document.getElementById('serch-button').addEventListener('click', function(event) {
+document.getElementById('serch-button').addEventListener('click', async function(event) {
   event.preventDefault();  // デフォルトの動作を停止
 
   // スポット年月の値を取得
@@ -9,17 +7,35 @@ document.getElementById('serch-button').addEventListener('click', function(event
 
   // 必要な値が選択されているか確認
   if (spotInput && monthInput) {
-    // yearとmonthを分割してクエリパラメータに渡す
     const [year, month] = monthInput.split('-');
 
-    
-    const url = `/result?spot=${spotInput}&year=${year}&month=${month}`;
+    try {
+      // spot_idからstation_idを取得するためのリクエスト
+      const response = await fetch(`/get_station_id?spot_id=${spotInput}`);
+      
+      // エラーチェック
+      if (!response.ok) {
+        const errorText = await response.text(); // レスポンスのテキストを取得
+        console.error('Error fetching station_id:', errorText);
+        throw new Error('Invalid spot_id');
+      }
 
-    // 結果ページに遷移
-    window.location.href = url;
+      const data = await response.json();
+      const station_id = data.station_id;
 
+      // デバッグログを追加
+      console.log('Retrieved station_id:', station_id);
+
+      // station_idを使って結果ページに遷移
+      const url = `/result?station=${station_id}&year=${year}&month=${month}`;
+      window.location.href = url;
+
+    } catch (error) {
+      console.error('Error:', error);
+      alert('エラーが発生しました: ' + error.message);
+    }
   } else {
-      alert("観光地と月を選択してください");
+    alert("観光地と月を選択してください");
   }
 });
 

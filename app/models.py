@@ -202,7 +202,7 @@ class dbConnect:
 
         try:
             print("Connecting to the database...", flush=True)
-            conn = dbConnect.getConnection()
+            conn = DB.getConnection()
             cursor = conn.cursor()
             
             sql = """
@@ -235,3 +235,38 @@ class dbConnect:
 
         return sunny_rate_data
 
+    def get_station_id(spot_id):
+        conn = None
+        cursor = None
+
+        try:
+            conn = DB.getConnection()
+            cursor = conn.cursor()
+
+            if not conn:
+                print("Failed to establish a database connection", flush=True)
+
+            # spot_idに基づいてstation_idを取得するSQL文
+            sql = "SELECT station_id FROM Spots WHERE spot_id = %s;"
+            print(f"Executing SQL: {sql} with spot_id={spot_id}", flush=True)
+
+            cursor.execute(sql, int(spot_id,))
+            result = cursor.fetchone()
+
+            if result:
+                print(f"Query Result: {result}", flush=True)
+                print(f"Result Type: {type(result)}, Keys: {list(result.keys())}", flush=True)
+                return result["station_id"]   # station_idを返す
+            else:
+                print("No result found for the given spot_id", flush=True)
+                return None  # 見つからなかった場合はNoneを返す
+        
+        except Exception as e:
+            print(f"Error getting station_id: {str(e)}", flush=True)
+            raise
+        
+        finally:
+            if cursor:
+                cursor.close()
+            if conn:
+                conn.close()

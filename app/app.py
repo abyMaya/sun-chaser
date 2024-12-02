@@ -192,6 +192,31 @@ def fetch_spots():
         return jsonify({'error': '観光地の取得に失敗しました'}), 500
     return jsonify(spot)  
 
+# 選択したスポットから気象台名IDを取得
+@app.route('/get_station_id', methods=['GET'])
+def get_station_id_api():
+    spot_id = request.args.get('spot_id')
+    
+    print("spot_id", spot_id, flush=True)
+
+    if not spot_id:
+        return jsonify({"get_station_id_apiでerror": "Invalid spot_id"}), 400
+    if not spot_id.isdigit():
+        return jsonify({"error": "spot_id must be an integer"}), 400
+    
+    spot_id = int(spot_id)
+    # spot_idからstation_idを取得するロジックを追加
+    try:
+        station_id = dbConnect.get_station_id(spot_id)
+    except Exception as e:
+        print(f"Error in get_station_id_api: {str(e)}", flush=True)
+        return jsonify({"error": "Internal server error"}), 500
+    
+    if not station_id:
+        return jsonify({"error": "No station found for the given spot_id"}), 404
+    
+    return jsonify({"station_id": station_id})
+
 # 天気データ結果取得
 @app.route('/get_sunny_rate', methods=["GET"])
 def get_sunny_rate_api():
@@ -240,7 +265,7 @@ def db_test():
         return "Error during DB test", 500
     
     
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
 
 
