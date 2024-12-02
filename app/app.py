@@ -97,7 +97,7 @@ def logout():
     session.clear()
     return redirect('/login')
 
-# ユーザー情報表示
+# ユーザー情報表示（セッティング画面）
 @app.route('/profile')
 def profile():
     user_id = session.get("user_id")
@@ -255,6 +255,15 @@ def result():
     
     return render_template('result.html', spot=spot, station_id=station_id, year=year, month=formatted_month)
 
+# 検索ページ表示
+@app.route('/serch')
+def serch():
+    return render_template('serch.html')
+
+# 設定ページ表示
+@app.route('/setting')
+def setting():
+    return render_template('setting.html')
 
 
 

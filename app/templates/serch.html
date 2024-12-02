@@ -12,8 +12,8 @@
   <header class="header" >
     <h1>SUN Chaser</h1>
     <div class="shortcut">
-      <a href="/profile">Setting</a>
-      <a href="/logout">Logout</a>
+      <a href="{{ url_for('profile') }}">Setting</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
     </div>
   </header>
   <main>
@@ -42,7 +42,7 @@
       
           <!-- </form> -->
       <div id="options">
-        <a href="/profile" id="spotregister">観光地新規登録</a>
+        <a href="{{ url_for('profile') }}" id="spotregister">観光地新規登録</a>
         <form>
           <select id="histories">
             <option>保存済みの検索条件</option>
