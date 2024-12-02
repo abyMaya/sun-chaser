@@ -237,13 +237,23 @@ def get_sunny_rate_api():
     return jsonify(sunny_rate_data)
 
 # 結果ページ表示
-@app.route('/result')
+@app.route('/result', methods=['GET'])
 def result():
-    spot = request.args.get('spot')
+    spot_id = request.args.get('spot_id')
+    station_id = request.args.get('station_id')
     year = request.args.get('year')
     month = request.args.get('month')
 
-    return render_template('result.html', spot=spot, year=year, month=month)
+    print(f"Received spot_id: {spot_id}, year: {year}, month: {month}", flush=True)
+    
+    if not spot_id:
+        return jsonify({"error": "spot_id is missing"}), 400
+    
+    spot = dbConnect.get_spot_name_by_spot_id(spot_id)
+    formatted_month = f"{year}/{month}" if year and month else ""
+
+    
+    return render_template('result.html', spot=spot, station_id=station_id, year=year, month=formatted_month)
 
 
 

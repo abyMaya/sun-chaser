@@ -27,7 +27,7 @@ document.getElementById('serch-button').addEventListener('click', async function
       console.log('Retrieved station_id:', station_id);
 
       // station_idを使って結果ページに遷移
-      const url = `/result?station=${station_id}&year=${year}&month=${month}`;
+      const url = `/result?spot_id=${spotInput}&station_id=${station_id}&year=${year}&month=${month}`;
       window.location.href = url;
 
     } catch (error) {

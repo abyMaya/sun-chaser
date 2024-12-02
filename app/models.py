@@ -270,3 +270,40 @@ class dbConnect:
                 cursor.close()
             if conn:
                 conn.close()
+
+    def get_spot_name_by_spot_id(spot_id):
+        conn = None
+        cursor = None
+
+        try:
+            conn = DB.getConnection()
+            cursor = conn.cursor()
+
+            if not conn:
+                print("Failed to establish a database connection", flush=True)
+
+            # spot_idに基づいてstation_idを取得するSQL文
+            sql = "SELECT spot_name FROM Spots WHERE spot_id = %s;"
+            print(f"Executing SQL: {sql} with spot_id={spot_id}", flush=True)
+
+            cursor.execute(sql, int(spot_id,))
+            result = cursor.fetchone()
+
+            if result:
+                print(f"Query Result: {result}", flush=True)
+                print(f"Result Type: {type(result)}, Keys: {list(result.keys())}", flush=True)
+                return result["spot_name"] 
+            else:
+                print("No result found for the given spot_id", flush=True)
+                return None  # 見つからなかった場合はNoneを返す
+        
+        except Exception as e:
+            print(f"Error getting station_id: {str(e)}", flush=True)
+            return None
+        
+        finally:
+            if cursor:
+                cursor.close()
+            if conn:
+                conn.close()    
+    
