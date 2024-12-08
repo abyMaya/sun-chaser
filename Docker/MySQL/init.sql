@@ -72,6 +72,22 @@ INSERT INTO WeatherStations VALUES (0, '富山', 3);
 INSERT INTO WeatherStations VALUES (0, '金沢', 3);
 INSERT INTO WeatherStations VALUES (0, '福井', 3);
 
+-- Spots テーブルに初期データを挿入
+INSERT INTO Spots (spot_name, region_id, station_id, created_at) VALUES 
+('東京タワー', 1, 1, NOW()),
+('横浜ランドマークタワー', 1, 2, NOW()),
+('銚子電鉄犬吠埼駅', 1, 3, NOW()),
+('静岡浅間神社', 2, 10, NOW()),
+('名古屋城', 2, 11, NOW()),
+('富山黒部峡谷鉄道', 3, 13, NOW()),
+('金沢21世紀美術館', 3, 15, NOW()),
+('上高地', 1, 8, NOW());
 
-
+-- WeatherData.csv挿入
+LOAD DATA INFILE '/docker-entrypoint-initdb.d/weatherdata_1.csv'
+INTO TABLE WeatherData
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(station_id, weather_date, sunny_rate, cloudy_rate, rainny_rate);
 

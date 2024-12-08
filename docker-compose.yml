@@ -33,6 +33,9 @@ services:
       - TZ=Asia/Tokyo
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./Docker/MySQL/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data/weatherdata_1.csv:/docker-entrypoint-initdb.d/weatherdata_1.csv
+      - ./Docker/MySQL/my.cnf:/etc/mysql/conf.d/my.cnf
 
   web:
     image: nginx:alpine
