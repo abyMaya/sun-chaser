@@ -8,7 +8,7 @@ function getMonthAndYearFromUrl() {
 }
 
 // sunny_rateを取得する関数
-async function fetchSunnyRate(spotId, month) {
+export async function fetchSunnyRate(spotId, month) {
   console.log(`Fetching sunny rate for spotId=${spotId} and month=${month}`);
   try {
     const response = await fetch(`/get_sunny_rate?spot_id=${spotId}&month=${month}`);
@@ -25,7 +25,7 @@ async function fetchSunnyRate(spotId, month) {
 }
 
 // 取得した年月を元にカレンダーを生成
-function generateCalendar(year, month) {
+function generateCalendar(year, month, sunnyRateData ) {
   const calendarEl = document.getElementById('calendar2');
   const daysInMonth = new Date(year, month, 0).getDate(); // monthは1から12のためそのまま
 
@@ -52,7 +52,24 @@ function generateCalendar(year, month) {
         calendarHtml += '<td></td>';
       }
     }
-    calendarHtml += `<td><span>${i}</span></td>`;
+
+    // 晴れ率データを探して対応するアイコンを表示
+    const sunnyRate = sunnyRateData?.find(item => parseInt(item.day) === i)?.sunny_rate || null;
+    console.log(`Day ${i}: Sunny rate =`, sunnyRate);
+
+    let icon = '';
+    if (sunnyRate !== null) {
+      if (sunnyRate >= 80) {
+        icon = '<img src="../static/img/sun_high_2.png" alt="High Sunny Rate">';
+      } else if (sunnyRate >= 65) {
+        icon = '<img src="../static/img/sun_mid_2.png" alt="Medium Sunny Rate">';
+      } else {
+        icon = '<img src="../static/img/sun_low_2.png" alt="Low Sunny Rate">';
+      }
+    }
+
+
+    calendarHtml += `<td><span>${i}</span>${icon || ''}</td>`;
     if (dayOfWeek === 6) {
       calendarHtml += '</tr>';
       if (i < daysInMonth) {
@@ -70,11 +87,31 @@ function generateCalendar(year, month) {
 }
 
 // ページがロードされた時にカレンダーを表示
-window.onload = function() {
-  const { year, month } = getMonthAndYearFromUrl();
-  if (year && month) {
-    generateCalendar(year, month);
+try {
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("window.onload started"); // デバッグログ
+
+  const { year, month, spotId } = getMonthAndYearFromUrl();
+  console.log("URL parameters:", { year, month, spotId }); // URLパラメータの確認
+  if (year && month && spotId) {
+
+    try {
+      console.log("Fetching sunny rate data...");
+      const sunnyRateData = await fetchSunnyRate(spotId, `${year}-${month}`);
+      console.log("Sunny rate data fetched:", sunnyRateData); // 取得データ確認
+
+      console.log("Generating calendar...");
+      generateCalendar(year, parseInt(month), sunnyRateData);
+      console.log("Calendar generated successfully"); // カレンダー生成確認
+    } catch (error) {
+      console.error('Error loading sunny rate data:', error);
+      
+    }
+
   } else {
     console.error('年月が指定されていません');
   }
-};
+});
+} catch (globalError) {
+  console.error('Unhandled error in script:', globalError);
+}
