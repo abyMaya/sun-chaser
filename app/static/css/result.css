@@ -1,0 +1,187 @@
+@charset "utf-8";
+
+.result_title {
+  font-family: 'Amatic SC', cursive;
+  font-size: large;
+  text-align: center;
+  color: rgb(237, 202, 202);
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  padding: 0 100px;
+  box-sizing: border-box;
+  margin-top: 30px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.left-top {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: solid 1px;
+  background: linear-gradient(45deg, rgb(19, 30, 229), rgb(156, 204, 229));
+  border-radius: 8px;
+  }
+
+.left-bottom  {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 20px 20px 20px;
+  padding: 10px 40px;
+  box-sizing: border-box;
+  border: 0.3px solid hwb(0 89% 9%);
+  border-radius: 8px;
+  box-shadow: 1px 2px 5px hwb(0 88% 11%);
+  }
+
+.left-top > div {
+  display: flex;
+  flex-direction: column; /* 縦並び */
+  
+}
+
+.left-top span {
+  margin-bottom: 10px;
+}
+
+.left-top #keep_serch {
+  width: 150px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.right {
+  flex: 1;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-top: 5%;
+}
+
+.wrapper > div {
+  margin: 0 10px;
+}
+
+.calendar {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.calendar-header {
+  background-color: #f8f8f8;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 70px);
+}
+
+.day-name, .day {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.day {
+  position: relative;
+}
+
+.day::after {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background-color: red; /* Stamp color */
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+/* Adjust the stamp position based on your needs */
+.day.stamped::after {
+  background-color: red; /* Change color if needed */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th {
+  border: 1px solid black;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.2em;
+}
+
+td {
+  border: 1px solid black;
+  width: 100px;
+  height: 60px;
+  position: relative;
+  padding: 0;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+td span {
+  font-size: 0.8em;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  text-align: left;  
+}
+
+.calendar-title {
+  text-align: center;    /* 水平中央揃え */
+  font-family: 'Amatic SC', cursive; /* フォントを変更 */
+  font-size: 20px;       /* フォントサイズを大きく */
+  color:rgb(19, 30, 229);    /* フォントを太字に */
+  margin-bottom: 20px;   /* カレンダーとの間に余白を作る */
+}
+
+#back_to_serch {
+  text-align: right;
+  margin-right: 5px;
+}
+
+
+td {
+  position: relative; /* 親要素を基準にアイコンを配置 */
+}
+
+td img {
+  position: absolute; /* 絶対配置 */
+  top: 50%; /* 親要素の垂直方向中央 */
+  left: 50%; /* 親要素の水平方向中央 */
+  transform: translate(-50%, -50%); /* 中央基準に調整 */
+  max-width: 80%; /* セル内に収まるサイズに調整 */
+  max-height: 80%; /* セル内に収まるサイズに調整 */
+  pointer-events: none; /* クリックイベントを無効化 */
+}
