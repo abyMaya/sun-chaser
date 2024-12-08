@@ -63,7 +63,7 @@ function generateCalendar(year, month, sunnyRateData ) {
         icon = '<img src="../static/img/sun_high_2.png" alt="High Sunny Rate">';
       } else if (sunnyRate >= 65) {
         icon = '<img src="../static/img/sun_mid_2.png" alt="Medium Sunny Rate">';
-      } else {
+      } else if (sunnyRate >= 50) {
         icon = '<img src="../static/img/sun_low_2.png" alt="Low Sunny Rate">';
       }
     }
