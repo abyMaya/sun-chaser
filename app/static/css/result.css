@@ -170,3 +170,18 @@ td span {
   text-align: right;
   margin-right: 5px;
 }
+
+
+td {
+  position: relative; /* 親要素を基準にアイコンを配置 */
+}
+
+td img {
+  position: absolute; /* 絶対配置 */
+  top: 50%; /* 親要素の垂直方向中央 */
+  left: 50%; /* 親要素の水平方向中央 */
+  transform: translate(-50%, -50%); /* 中央基準に調整 */
+  max-width: 80%; /* セル内に収まるサイズに調整 */
+  max-height: 80%; /* セル内に収まるサイズに調整 */
+  pointer-events: none; /* クリックイベントを無効化 */
+}
