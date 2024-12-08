@@ -1,5 +1,4 @@
-from flask import abort, app
-import pymysql # type: ignore
+import pymysql
 
 class DB:
     
@@ -14,8 +13,9 @@ class DB:
             charset="utf8",
             cursorclass=pymysql.cursors.DictCursor
             )
-            print("getConnectionDB接続成功")
+
             return conn
+        
         except Exception as e:
             print(f"getConnectionDB接続エラー: {str(e)}")
             conn.close()

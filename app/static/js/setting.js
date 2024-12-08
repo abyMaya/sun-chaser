@@ -74,20 +74,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     const regionId = this.value;
     
     if (regionId) {
-        try {
-            
-
+        try {          
             const response = await fetch(`/get-stations/${regionId}`);
             const stations = await response.json();
-
-
+            
             stationSelect.innerHTML = '<option value="" selected disabled>気象台を選択してください</option>';
 
             stations.forEach(station => {
               const option = document.createElement('option');
               option.value = station.station_id;
               option.textContent = station.station_name;
-              console.log('Adding option:', option); 
               stationSelect.appendChild(option);
             });
 
