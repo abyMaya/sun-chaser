@@ -201,18 +201,20 @@ class dbConnect:
         sunny_rate_data = []
 
         try:
-            print("Connecting to the database...", flush=True)
+            print(f"Connecting to DB for sunny rate with station_id={station_id}, month={month}", flush=True)
+
             conn = DB.getConnection()
             cursor = conn.cursor()
             
             sql = """
-            SELECT DATE_FORMAT(weather_date, '%m') AS month, DATE_FORMAT(weather_date, '%d') AS day, sunny_rate
+            SELECT DATE_FORMAT(weather_date, '%%m') AS month, DATE_FORMAT(weather_date, '%%d') AS day, sunny_rate
             FROM WeatherData
             WHERE station_id = %s AND MONTH(weather_date) = %s;
             """
 
-            month_number = month.split('-')[1]
-            print(f"Executing SQL: {sql} with station_id: {station_id}, month: {month_number}", flush=True)
+            month_number = month.split('-')[1] if '-' in month else month
+            print(f"Executing SQL with parameters: station_id={station_id}, month={month_number}", flush=True)
+
             cursor.execute(sql, (station_id, month_number))
 
             sunny_rate_data = cursor.fetchall()

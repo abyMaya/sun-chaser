@@ -1,4 +1,6 @@
 document.getElementById('serch-button').addEventListener('click', async function(event) {
+  console.log("Search button clicked");
+
   event.preventDefault();  // デフォルトの動作を停止
 
   // スポット年月の値を取得
@@ -25,6 +27,13 @@ document.getElementById('serch-button').addEventListener('click', async function
 
       // デバッグログを追加
       console.log('Retrieved station_id:', station_id);
+
+      // `fetchSunnyRate` を呼び出して天気データを取得
+      console.log(`Calling fetchSunnyRate with station_id=${station_id} and month=${month}`);
+      const sunnyRateData = await fetchSunnyRate(station_id, `${year}-${month}`);
+
+      // `fetchSunnyRate` の結果を確認
+      console.log('Sunny rate data:', sunnyRateData);
 
       // station_idを使って結果ページに遷移
       const url = `/result?spot_id=${spotInput}&station_id=${station_id}&year=${year}&month=${month}`;

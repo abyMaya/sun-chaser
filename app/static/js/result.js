@@ -3,7 +3,25 @@ function getMonthAndYearFromUrl() {
   const urlParams = new URLSearchParams(window.location.search);
   const year = urlParams.get('year');
   const month = urlParams.get('month');
-  return { year, month };
+  const spotId = urlParams.get('spot_id');
+  return { year, month, spotId };
+}
+
+// sunny_rateを取得する関数
+async function fetchSunnyRate(spotId, month) {
+  console.log(`Fetching sunny rate for spotId=${spotId} and month=${month}`);
+  try {
+    const response = await fetch(`/get_sunny_rate?spot_id=${spotId}&month=${month}`);
+    if(!response.ok) {
+      throw new Error('Failed to fetch sunny rate data');
+    }
+    const data = await response.json();
+    console.log('Sunny rate data received:', data);
+    return data;
+  } catch (error) {
+  console.error('Error fetching sunny rate data:', error);
+  return [];
+  }
 }
 
 // 取得した年月を元にカレンダーを生成

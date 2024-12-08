@@ -223,14 +223,23 @@ def get_sunny_rate_api():
     spot_id = request.args.get('spot_id')
     month = request.args.get('month')
 
+    # デバッグ用ログ
+    app.logger.info(f"Request received at /get_sunny_rate with spot_id={spot_id}, month={month}")
+
+
     if not spot_id or not month:
         return jsonify({"error": "Invalid parameters"}), 400
     
     print(f"Received spot_id: {spot_id}, month: {month}", flush=True)
 
-    sunny_rate_data = dbConnect.get_sunny_rate(spot_id, month)
+    try:
+        sunny_rate_data = dbConnect.get_sunny_rate(spot_id, month)
+    except Exception as e:
+        print(f"Error fetching sunny rate data: {str(e)}", flush=True)
+        return jsonify({"error": "Server error while fetching sunny rate data"}), 500
 
     if not sunny_rate_data:
+        print("No data found for the given parameters", flush=True)
         return jsonify({"error": "No data found for the given parameters"}),
   
     print("Sunny rate data:", sunny_rate_data, flush=True) 
