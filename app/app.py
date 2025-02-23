@@ -22,13 +22,13 @@ def signup():
 # 新規登録処理
 @app.route('/signup', methods=['POST'])
 def userSignup():
-    user_name = request.form.get('user_name')
+    username = request.form.get('username')
     email = request.form.get('email')
     password1 = request.form.get('password1')
     password2 = request.form.get('password2')
     pattern = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
 
-    if user_name == '' or email == '' or password1 == '' or password2 == '':
+    if username == '' or email == '' or password1 == '' or password2 == '':
         flash('全てのフォームに入力してください')
     elif password1 != password2:
         flash('２つのパスワードの値が違っています')
@@ -43,7 +43,7 @@ def userSignup():
         if DBuser != None:
             flash('既に登録されています')
         else:                
-            dbConnect.createUser(user_id, user_name, email, password, created_at)
+            dbConnect.createUser(user_id, username, email, password, created_at)
             session['user_id'] = user_id
 
             return redirect('/')
