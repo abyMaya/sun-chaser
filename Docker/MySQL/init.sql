@@ -35,29 +35,31 @@ CREATE TABLE Spots(
     spot_id INT PRIMARY KEY AUTO_INCREMENT,
     spot_name VARCHAR(255) NOT NULL UNIQUE,
     region_id INT NOT NULL,
-    station_id INT NOT NULL,
-    created_at BIGINT,
-    updated_at BIGINT
     FOREIGN KEY (region_id) REFERENCES Regions(region_id),
-    FOREIGN KEY (station_id) REFERENCES WeatherStations(station_id)
+    station_id INT NOT NULL,
+    FOREIGN KEY (station_id) REFERENCES WeatherStations(station_id),
+    created_at BIGINT,
+    updated_at BIGINT    
 );
 
 CREATE TABLE WeatherData(
     weather_id INT PRIMARY KEY AUTO_INCREMENT,
     station_id INT NOT NULL,
+    FOREIGN KEY (station_id) REFERENCES WeatherStations(station_id),
     weather_date DATE NOT NULL,
     sunny_rate DECIMAL(4,2),
     cloudy_rate DECIMAL(4,2),
-    rainny_rate DECIMAL(4,2),
-    FOREIGN KEY (station_id) REFERENCES WeatherStations(station_id)
+    rainny_rate DECIMAL(4,2)   
 );
 
 CREATE TABLE UsersSpots(
     users_spot_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id CHAR(36) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    spot_id INT NOT NULL,
     FOREIGN KEY (spot_id) REFERENCES Spots(spot_id),
     created_at BIGINT,
-    updated_at BIGINT
+    updated_at BIGINT    
 );
 
 -- Regions WeatherStationsマスタ登録
