@@ -37,7 +37,7 @@ def userSignup():
     else:
         user_id = str(uuid.uuid4())
         password = hashlib.sha256(password1.encode('utf-8')).hexdigest()
-        created_at = datetime.now()
+        created_at = int(datetime.now().timestamp())
         DBuser = dbConnect.getUser(email)
 
         if DBuser != None:
@@ -158,7 +158,7 @@ def spotRegister():
         flash('全てのフォームに入力してください')
         return redirect('/spot-register')        
     
-    created_at = datetime.now()
+    created_at = int(datetime.now().timestamp())
     dbConnect.createSpot(spot, location, station, created_at)
 
     return redirect('/') 
