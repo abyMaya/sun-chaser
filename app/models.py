@@ -6,14 +6,14 @@ from util.DB import DB
 
 class dbConnect:
     
-    def createUser(user_id, user_name, email, password, created_at):
+    def createUser(user_id, username, email, password, created_at):
         conn = None
         cur = None
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO Users (user_id, user_name, email, password, created_at) VALUES (%s, %s, %s, %s, %s);"
-            cur.execute(sql, (user_id, user_name, email, password, created_at))
+            sql = "INSERT INTO Users (user_id, username, email, password, created_at) VALUES (%s, %s, %s, %s, %s);"
+            cur.execute(sql, (user_id, username, email, password, created_at))
             conn.commit()            
         except Exception as e:
             print(f"Error in createUser: {str(e)}")
@@ -65,7 +65,7 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "UPDATE Users SET user_name = %s WHERE user_id = %s;"
+            sql = "UPDATE Users SET username = %s WHERE user_id = %s;"
             cur.execute(sql, (new_username, user_id))
             conn.commit()
         except Exception as e:
