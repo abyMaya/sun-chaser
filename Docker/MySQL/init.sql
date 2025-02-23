@@ -7,23 +7,28 @@ USE SUN_Chaser;
 GRANT ALL PRIVILEGES ON SUN_Chaser.* TO 'admin';
 
 CREATE TABLE Users (
-    user_id VARCHAR(255) PRIMARY KEY,
-    user_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    user_id CHAR(36) PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(254) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    created_at BIGINT,
+    updated_at BIGINT
 );
 
 CREATE TABLE Regions(
     region_id INT PRIMARY KEY AUTO_INCREMENT,
-    region_name VARCHAR(255) NOT NULL UNIQUE
+    region_name VARCHAR(255) NOT NULL UNIQUE,
+    created_at BIGINT,
+    updated_at BIGINT
 );
 
 CREATE TABLE WeatherStations(
     station_id INT PRIMARY KEY AUTO_INCREMENT,
     station_name  VARCHAR(255) NOT NULL UNIQUE,
     region_id INT NOT NULL,
-    FOREIGN KEY (region_id) REFERENCES Regions(region_id)
+    FOREIGN KEY (region_id) REFERENCES Regions(region_id),
+    created_at BIGINT,
+    updated_at BIGINT
 );
 
 CREATE TABLE Spots(
@@ -31,7 +36,8 @@ CREATE TABLE Spots(
     spot_name VARCHAR(255) NOT NULL UNIQUE,
     region_id INT NOT NULL,
     station_id INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    created_at BIGINT,
+    updated_at BIGINT
     FOREIGN KEY (region_id) REFERENCES Regions(region_id),
     FOREIGN KEY (station_id) REFERENCES WeatherStations(station_id)
 );
@@ -40,10 +46,18 @@ CREATE TABLE WeatherData(
     weather_id INT PRIMARY KEY AUTO_INCREMENT,
     station_id INT NOT NULL,
     weather_date DATE NOT NULL,
-    sunny_rate DECIMAL(6,4),
-    cloudy_rate DECIMAL(6,4),
-    rainny_rate DECIMAL(6,4),
+    sunny_rate DECIMAL(4,2),
+    cloudy_rate DECIMAL(4,2),
+    rainny_rate DECIMAL(4,2),
     FOREIGN KEY (station_id) REFERENCES WeatherStations(station_id)
+);
+
+CREATE TABLE UsersSpots(
+    users_spot_id INT PRIMARY KEY AUTO_INCREMENT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (spot_id) REFERENCES Spots(spot_id),
+    created_at BIGINT,
+    updated_at BIGINT
 );
 
 -- Regions WeatherStationsマスタ登録
