@@ -37,7 +37,7 @@ def userSignup():
     else:
         user_id = str(uuid.uuid4())
         password = hashlib.sha256(password1.encode('utf-8')).hexdigest()
-        created_at = int(datetime.now().timestamp())
+        created_at = int(datetime.now().timestamp())        
         DBuser = dbConnect.getUser(email)
 
         if DBuser != None:
@@ -114,12 +114,13 @@ def update_username():
     data = request.get_json()
     new_username = data.get('username')    
     user_id = session.get("user_id")
+    updated_at = int(datetime.now().timestamp())
 
     if user_id is None:
         return redirect('/login')    
     user = dbConnect.getUserById(user_id)
     if user :
-        dbConnect.updateUser(user_id, new_username)
+        dbConnect.updateUser(user_id, new_username, updated_at)
 
     return jsonify(success=True)
 
@@ -159,7 +160,10 @@ def spotRegister():
         return redirect('/spot-register')        
     
     created_at = int(datetime.now().timestamp())
-    dbConnect.createSpot(spot, location, station, created_at)
+    user_id = session.get("user_id")
+
+    spot_id = dbConnect.createSpot(spot, location, station, created_at)
+    dbConnect.createUserSpot(user_id, spot_id, created_at)
 
     return redirect('/') 
 

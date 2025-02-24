@@ -12,8 +12,8 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO Users (user_id, username, email, password, created_at) VALUES (%s, %s, %s, %s, %s);"
-            cur.execute(sql, (user_id, username, email, password, created_at))
+            sql = "INSERT INTO Users (user_id, username, email, password, created_at, updated_at) VALUES (%s, %s, %s, %s, %s, %s);"
+            cur.execute(sql, (user_id, username, email, password, created_at, None))
             conn.commit()            
         except Exception as e:
             print(f"Error in createUser: {str(e)}")
@@ -59,14 +59,14 @@ class dbConnect:
         finally:
             connection.close()
 
-    def updateUser(user_id, new_username):
+    def updateUser(user_id, new_username, updated_at):
         conn = None
         cur = None
         try:
             conn = DB.getConnection()
-            cur = conn.cursor()
-            sql = "UPDATE Users SET username = %s WHERE user_id = %s;"
-            cur.execute(sql, (new_username, user_id))
+            cur = conn.cursor()            
+            sql = "UPDATE Users SET username = %s, updated_at = %s WHERE user_id = %s;"
+            cur.execute(sql, (new_username, updated_at, user_id))
             conn.commit()
         except Exception as e:
             print(f"Error in updateUser: {str(e)}")
@@ -137,9 +137,13 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO Spots (spot_name, region_id, station_id, created_at) VALUES (%s, %s, %s, %s);"
-            cur.execute(sql, (spot_name, region_id, station_id, created_at))
-            conn.commit()            
+            sql = "INSERT INTO Spots (spot_name, region_id, station_id, created_at, updated_at) VALUES (%s, %s, %s, %s, %s);"
+            cur.execute(sql, (spot_name, region_id, station_id, created_at, None))
+            conn.commit()
+
+            spot_id = cur.lastrowid
+            return spot_id
+        
         except Exception as e:
             print(f"Error in createSpot: {str(e)}")
             abort(500)
@@ -149,6 +153,25 @@ class dbConnect:
             if conn:
                 conn.close()
     
+    def createUserSpot(user_id, spot_id, created_at):
+        conn = None
+        cur = None
+        try:
+            conn = DB.getConnection()
+            cur = conn.cursor()
+
+            sql = "INSERT INTO UsersSpots (user_id, spot_id, created_at, updated_at) VALUES (%s, %s, %s, %s);"
+            cur.execute(sql, (user_id, spot_id, created_at, None))
+            conn.commit()
+        except Exception as e:
+            print(f"Error in createUserSpot: {str(e)}")
+            abort(500)
+        finally:
+            if cur:
+                cur.close()
+            if conn:
+                conn.close()
+                
     @staticmethod
     def get_spots():
         conn = None
