@@ -89,7 +89,7 @@ INSERT INTO WeatherStations VALUES (0, '金沢', 3, UNIX_TIMESTAMP(), UNIX_TIMES
 INSERT INTO WeatherStations VALUES (0, '福井', 3, UNIX_TIMESTAMP(), UNIX_TIMESTAMP());
 
 -- Spots テーブルに初期データを挿入
-INSERT INTO Spots (spot_name, region_id, station_id, created_at) VALUES 
+INSERT INTO Spots (spot_name, region_id, station_id, created_at, updated_at) VALUES 
 ('東京タワー', 1, 1, UNIX_TIMESTAMP(), UNIX_TIMESTAMP()),
 ('横浜ランドマークタワー', 1, 2, UNIX_TIMESTAMP(), UNIX_TIMESTAMP()),
 ('銚子電鉄犬吠埼駅', 1, 3, UNIX_TIMESTAMP(), UNIX_TIMESTAMP()),
