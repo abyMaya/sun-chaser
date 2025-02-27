@@ -32,13 +32,13 @@ jobs:
           pip install isort black flake8
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run isort
-        run: |
-          isort . --check
-
       - name: Run black
         run: |
           black . --check
+
+      - name: Run isort
+        run: |
+          isort . --check
 
       - name: Run flake8
         run: |
