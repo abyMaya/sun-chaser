@@ -3,8 +3,15 @@ import re
 import uuid
 from datetime import datetime, timedelta
 
-from flask import (Flask, flash, jsonify, redirect, render_template, request,
-                   session)
+from flask import (
+    Flask,
+    flash,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    session,
+)
 from models import dbConnect
 
 app = Flask(__name__)

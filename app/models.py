@@ -5,7 +5,6 @@ from util.DB import DB
 
 class dbConnect:
 
-
     def createUser(user_id, username, email, password, created_at):
         conn = None
         cur = None
@@ -30,7 +29,6 @@ class dbConnect:
             if conn:
                 conn.close()
 
-
     def getUser(email):
         conn = None
         cur = None
@@ -51,7 +49,6 @@ class dbConnect:
             if conn:
                 conn.close()
 
-
     def getUserById(user_id):
         connection = DB.getConnection()
         try:
@@ -66,7 +63,6 @@ class dbConnect:
             return None
         finally:
             connection.close()
-
 
     def updateUser(user_id, new_username, updated_at):
         conn = None
@@ -88,7 +84,6 @@ class dbConnect:
                 cur.close()
             if conn:
                 conn.close()
-
 
     @staticmethod
     def get_regions():
@@ -125,7 +120,6 @@ class dbConnect:
             for region in regions
         ]
 
-
     @staticmethod
     def get_stations(region_id):
         conn = None
@@ -160,7 +154,6 @@ class dbConnect:
             for station in stations
         ]
 
-
     def createSpot(spot_name, region_id, station_id, created_at):
         conn = None
         cur = None
@@ -189,7 +182,6 @@ class dbConnect:
             if conn:
                 conn.close()
 
-
     def createUserSpot(user_id, spot_id, created_at):
         conn = None
         cur = None
@@ -212,7 +204,6 @@ class dbConnect:
                 cur.close()
             if conn:
                 conn.close()
-
 
     @staticmethod
     def get_spots():
@@ -245,7 +236,6 @@ class dbConnect:
             for spot in spots
         ]
 
-
     def get_sunny_rate(station_id, month):
         conn = None
         cursor = None
@@ -276,7 +266,6 @@ class dbConnect:
             if conn:
                 conn.close()
 
-
     def get_station_id(spot_id):
         conn = None
         cursor = None
@@ -299,7 +288,6 @@ class dbConnect:
                 cursor.close()
             if conn:
                 conn.close()
-
 
     def get_spot_name_by_spot_id(spot_id):
         conn = None
