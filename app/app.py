@@ -52,7 +52,7 @@ def userSignup():
         else:
             dbConnect.createUser(
                 user_id, username, email, password, created_at
-                )
+            )
             session["user_id"] = user_id
 
             return redirect("/")
@@ -214,9 +214,10 @@ def get_station_id_api():
         return jsonify({"error": "Internal server error"}), 500
 
     if not station_id:
-        return jsonify(
-            {"error": "No station found for the given spot_id"}
-            ), 404
+        return (
+            jsonify({"error": "No station found for the given spot_id"}),
+            404,
+        )
 
     return jsonify({"station_id": station_id})
 
@@ -233,14 +234,13 @@ def get_sunny_rate_api():
         sunny_rate_data = dbConnect.get_sunny_rate(spot_id, month)
     except Exception as e:
         print(f"Error fetching sunny rate data: {str(e)}", flush=True)
-        return jsonify(
-            {"error": "Server error while fetching sunny rate data"}
-            ), 500
+        return (
+            jsonify({"error": "Server error while fetching sunny rate data"}),
+            500,
+        )
 
     if not sunny_rate_data:
-        return (jsonify(
-            {"error": "No data found for the given parameters"}
-            ),)
+        return (jsonify({"error": "No data found for the given parameters"}),)
 
     return jsonify(sunny_rate_data)
 

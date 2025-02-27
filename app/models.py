@@ -5,6 +5,7 @@ from util.DB import DB
 
 class dbConnect:
 
+
     def createUser(user_id, username, email, password, created_at):
         conn = None
         cur = None
@@ -18,7 +19,7 @@ class dbConnect:
             )
             cur.execute(
                 sql, (user_id, username, email, password, created_at, None)
-                )
+            )
             conn.commit()
         except Exception as e:
             print(f"Error in createUser: {str(e)}")
@@ -28,6 +29,7 @@ class dbConnect:
                 cur.close()
             if conn:
                 conn.close()
+
 
     def getUser(email):
         conn = None
@@ -49,6 +51,7 @@ class dbConnect:
             if conn:
                 conn.close()
 
+
     def getUserById(user_id):
         connection = DB.getConnection()
         try:
@@ -63,6 +66,7 @@ class dbConnect:
             return None
         finally:
             connection.close()
+
 
     def updateUser(user_id, new_username, updated_at):
         conn = None
@@ -84,6 +88,7 @@ class dbConnect:
                 cur.close()
             if conn:
                 conn.close()
+
 
     @staticmethod
     def get_regions():
@@ -113,10 +118,13 @@ class dbConnect:
                 conn.close()
 
         return [
-            {"region_id": region["region_id"],
-             "region_name": region["region_name"]}
+            {
+                "region_id": region["region_id"],
+                "region_name": region["region_name"],
+            }
             for region in regions
         ]
+
 
     @staticmethod
     def get_stations(region_id):
@@ -152,6 +160,7 @@ class dbConnect:
             for station in stations
         ]
 
+
     def createSpot(spot_name, region_id, station_id, created_at):
         conn = None
         cur = None
@@ -165,7 +174,7 @@ class dbConnect:
             )
             cur.execute(
                 sql, (spot_name, region_id, station_id, created_at, None)
-                )
+            )
             conn.commit()
 
             spot_id = cur.lastrowid
@@ -179,6 +188,7 @@ class dbConnect:
                 cur.close()
             if conn:
                 conn.close()
+
 
     def createUserSpot(user_id, spot_id, created_at):
         conn = None
@@ -202,6 +212,7 @@ class dbConnect:
                 cur.close()
             if conn:
                 conn.close()
+
 
     @staticmethod
     def get_spots():
@@ -234,6 +245,7 @@ class dbConnect:
             for spot in spots
         ]
 
+
     def get_sunny_rate(station_id, month):
         conn = None
         cursor = None
@@ -264,6 +276,7 @@ class dbConnect:
             if conn:
                 conn.close()
 
+
     def get_station_id(spot_id):
         conn = None
         cursor = None
@@ -271,12 +284,7 @@ class dbConnect:
             conn = DB.getConnection()
             cursor = conn.cursor()
             sql = "SELECT station_id FROM Spots WHERE spot_id = %s;"
-            cursor.execute(
-                sql,
-                int(
-                    spot_id,
-                ),
-            )
+            cursor.execute(sql, int(spot_id))
             result = cursor.fetchone()
 
             if result:
@@ -292,6 +300,7 @@ class dbConnect:
             if conn:
                 conn.close()
 
+
     def get_spot_name_by_spot_id(spot_id):
         conn = None
         cursor = None
@@ -299,12 +308,7 @@ class dbConnect:
             conn = DB.getConnection()
             cursor = conn.cursor()
             sql = "SELECT spot_name FROM Spots WHERE spot_id = %s;"
-            cursor.execute(
-                sql,
-                int(
-                    spot_id,
-                ),
-            )
+            cursor.execute(sql, int(spot_id))
             result = cursor.fetchone()
 
             if result:
