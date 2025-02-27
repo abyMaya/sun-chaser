@@ -1,26 +1,31 @@
 import pymysql
-
 from flask import abort
-
 from util.DB import DB
 
+
 class dbConnect:
-    
+
     def createUser(user_id, username, email, password, created_at):
         conn = None
         cur = None
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO Users (user_id, username, email, password, created_at, updated_at) VALUES (%s, %s, %s, %s, %s, %s);"
-            cur.execute(sql, (user_id, username, email, password, created_at, None))
-            conn.commit()            
+            sql = (
+                "INSERT INTO Users "
+                "(user_id, username, email, password, created_at, updated_at) "
+                "VALUES (%s, %s, %s, %s, %s, %s);"
+            )
+            cur.execute(
+                sql, (user_id, username, email, password, created_at, None)
+                )
+            conn.commit()
         except Exception as e:
             print(f"Error in createUser: {str(e)}")
             abort(500)
         finally:
             if cur:
-                cur.close()  
+                cur.close()
             if conn:
                 conn.close()
 
@@ -34,13 +39,13 @@ class dbConnect:
             cur.execute(sql, (email,))
             user = cur.fetchone()
 
-            return user        
+            return user
         except Exception as e:
             print(f"Error in getUser: {str(e)}")
             abort(500)
         finally:
             if cur:
-                cur.close()  
+                cur.close()
             if conn:
                 conn.close()
 
@@ -52,7 +57,7 @@ class dbConnect:
                 cursor.execute(sql, (user_id,))
                 user = cursor.fetchone()
 
-                return user            
+                return user
         except Exception as e:
             print(f"Error fetching user: {str(e)}")
             return None
@@ -64,8 +69,11 @@ class dbConnect:
         cur = None
         try:
             conn = DB.getConnection()
-            cur = conn.cursor()            
-            sql = "UPDATE Users SET username = %s, updated_at = %s WHERE user_id = %s;"
+            cur = conn.cursor()
+            sql = (
+                "UPDATE Users SET username = %s, "
+                "updated_at = %s WHERE user_id = %s;"
+            )
             cur.execute(sql, (new_username, updated_at, user_id))
             conn.commit()
         except Exception as e:
@@ -81,17 +89,17 @@ class dbConnect:
     def get_regions():
         conn = None
         cursor = None
-        regions = [] 
+        regions = []
         try:
             conn = DB.getConnection()
-            cursor = conn.cursor(pymysql.cursors.DictCursor)            
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
             sql = "SELECT region_id, region_name FROM Regions;"
             cursor.execute(sql)
             regions = cursor.fetchall()
 
             if not regions:
-                print("No regions found in the database.") 
-                return []             
+                print("No regions found in the database.")
+                return []
         except pymysql.MySQLError as e:
             print(f"MySQLError: {str(e)}")
             abort(500)
@@ -103,9 +111,13 @@ class dbConnect:
                 cursor.close()
             if conn:
                 conn.close()
-                
-        return [{'region_id': region['region_id'], 'region_name': region['region_name']} for region in regions]
-        
+
+        return [
+            {"region_id": region["region_id"],
+             "region_name": region["region_name"]}
+            for region in regions
+        ]
+
     @staticmethod
     def get_stations(region_id):
         conn = None
@@ -114,12 +126,15 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cursor = conn.cursor(pymysql.cursors.DictCursor)
-            sql = "SELECT station_id, station_name FROM WeatherStations WHERE region_id = %s;"
+            sql = (
+                "SELECT station_id, station_name "
+                "FROM WeatherStations WHERE region_id = %s;"
+            )
             cursor.execute(sql, (region_id,))
             stations = cursor.fetchall()
         except pymysql.MySQLError as e:
             print(f"MySQLError: {str(e)}")
-            abort(500)                  
+            abort(500)
         except Exception as e:
             print(f"Error in get_stations: {str(e)}")
             abort(500)
@@ -129,7 +144,13 @@ class dbConnect:
             if conn:
                 conn.close()
 
-        return [{'station_id': station['station_id'], 'station_name': station['station_name']} for station in stations]
+        return [
+            {
+                "station_id": station["station_id"],
+                "station_name": station["station_name"],
+            }
+            for station in stations
+        ]
 
     def createSpot(spot_name, region_id, station_id, created_at):
         conn = None
@@ -137,22 +158,28 @@ class dbConnect:
         try:
             conn = DB.getConnection()
             cur = conn.cursor()
-            sql = "INSERT INTO Spots (spot_name, region_id, station_id, created_at, updated_at) VALUES (%s, %s, %s, %s, %s);"
-            cur.execute(sql, (spot_name, region_id, station_id, created_at, None))
+            sql = (
+                "INSERT INTO Spots "
+                "(spot_name, region_id, station_id, created_at, updated_at) "
+                "VALUES (%s, %s, %s, %s, %s);"
+            )
+            cur.execute(
+                sql, (spot_name, region_id, station_id, created_at, None)
+                )
             conn.commit()
 
             spot_id = cur.lastrowid
             return spot_id
-        
+
         except Exception as e:
             print(f"Error in createSpot: {str(e)}")
             abort(500)
         finally:
             if cur:
-                cur.close()  
+                cur.close()
             if conn:
                 conn.close()
-    
+
     def createUserSpot(user_id, spot_id, created_at):
         conn = None
         cur = None
@@ -160,7 +187,11 @@ class dbConnect:
             conn = DB.getConnection()
             cur = conn.cursor()
 
-            sql = "INSERT INTO UsersSpots (user_id, spot_id, created_at, updated_at) VALUES (%s, %s, %s, %s);"
+            sql = (
+                "INSERT INTO UsersSpots "
+                "(user_id, spot_id, created_at, updated_at) "
+                "VALUES (%s, %s, %s, %s);"
+            )
             cur.execute(sql, (user_id, spot_id, created_at, None))
             conn.commit()
         except Exception as e:
@@ -171,7 +202,7 @@ class dbConnect:
                 cur.close()
             if conn:
                 conn.close()
-                
+
     @staticmethod
     def get_spots():
         conn = None
@@ -179,15 +210,15 @@ class dbConnect:
         spots = []
         try:
             conn = DB.getConnection()
-            cursor = conn.cursor(pymysql.cursors.DictCursor)            
+            cursor = conn.cursor(pymysql.cursors.DictCursor)
             sql = "SELECT spot_id, spot_name FROM Spots;"
             cursor.execute(sql)
             spots = cursor.fetchall()
 
             if not spots:
-                return [] 
+                return []
         except pymysql.MySQLError as e:
-            print(f"MySQL error: {str(e)}") 
+            print(f"MySQL error: {str(e)}")
             abort(500)
         except Exception as e:
             print(f"Error in get_spots: {str(e)}")
@@ -197,8 +228,11 @@ class dbConnect:
                 cursor.close()
             if conn:
                 conn.close()
-                
-        return [{'spot_id': spot['spot_id'], 'spot_name': spot['spot_name']} for spot in spots]  
+
+        return [
+            {"spot_id": spot["spot_id"], "spot_name": spot["spot_name"]}
+            for spot in spots
+        ]
 
     def get_sunny_rate(station_id, month):
         conn = None
@@ -206,17 +240,18 @@ class dbConnect:
         sunny_rate_data = []
         try:
             conn = DB.getConnection()
-            cursor = conn.cursor()            
+            cursor = conn.cursor()
             sql = """
-            SELECT DATE_FORMAT(weather_date, '%%m') AS month, DATE_FORMAT(weather_date, '%%d') AS day, sunny_rate
-            FROM WeatherData
+            SELECT DATE_FORMAT(weather_date, '%%m') AS month,
+            DATE_FORMAT(weather_date, '%%d') AS day,
+            sunny_rate FROM WeatherData
             WHERE station_id = %s AND MONTH(weather_date) = %s;
             """
-            month_number = month.split('-')[1] if '-' in month else month
+            month_number = month.split("-")[1] if "-" in month else month
             cursor.execute(sql, (station_id, month_number))
             sunny_rate_data = cursor.fetchall()
 
-            return sunny_rate_data                
+            return sunny_rate_data
         except pymysql.MySQLError as e:
             print(f"MySQL error: {str(e)}")
             abort(500)
@@ -236,16 +271,21 @@ class dbConnect:
             conn = DB.getConnection()
             cursor = conn.cursor()
             sql = "SELECT station_id FROM Spots WHERE spot_id = %s;"
-            cursor.execute(sql, int(spot_id,))
+            cursor.execute(
+                sql,
+                int(
+                    spot_id,
+                ),
+            )
             result = cursor.fetchone()
 
             if result:
                 return result["station_id"]
-                         
-            return None             
+
+            return None
         except Exception as e:
             print(f"Error in get_station_id: {str(e)}")
-            raise        
+            raise
         finally:
             if cursor:
                 cursor.close()
@@ -259,19 +299,23 @@ class dbConnect:
             conn = DB.getConnection()
             cursor = conn.cursor()
             sql = "SELECT spot_name FROM Spots WHERE spot_id = %s;"
-            cursor.execute(sql, int(spot_id,))
+            cursor.execute(
+                sql,
+                int(
+                    spot_id,
+                ),
+            )
             result = cursor.fetchone()
 
             if result:
                 return result["spot_name"]
-             
-            return None              
+
+            return None
         except Exception as e:
             print(f"Error in get_spot_name_by_spot_id: {str(e)}")
-            return None        
+            return None
         finally:
             if cursor:
                 cursor.close()
             if conn:
-                conn.close()    
-    
+                conn.close()

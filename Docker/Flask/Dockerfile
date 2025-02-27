@@ -7,8 +7,11 @@ WORKDIR /code
 
 # requirements.txtをコンテナにコピーしてパッケージをインストール
 COPY ./requirements.txt /code/
+COPY ./requirements-dev.txt /code/
+
 RUN pip install -U pip && \
-    pip install -r requirements.txt
+    pip install -r requirements.txt && \
+    pip install -r requirements-dev.txt
 
 # ソースコードをコンテナにコピー
 COPY ./app /code/
