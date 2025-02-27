@@ -1,16 +1,18 @@
-/venv
-_pycache
-# python
+# Python
 __pycache__/
 *.pyc
 
-# Environment Variables
+# Virtual Environment
+venv/
 .env
 
 # Docker
 *.log
 docker-compose.override.yml
 
-venv/
+# VS Code
+.vscode/
+
+
 
 
