@@ -1,6 +1,6 @@
 import { fetchSunnyRate } from './result.js';
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener('DOMContentLoaded', async () => {
   // 観光地を取得する処理
   const spotsSelect = document.getElementById('spotsSelect');
 
@@ -16,13 +16,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const spots = await response.json();
-    spots.forEach(spot => {
+    spots.forEach((spot) => {
       const option = document.createElement('option');
       option.value = spot.spot_id;
       option.textContent = spot.spot_name;
       spotsSelect.appendChild(option);
     });
-
   } catch (error) {
     console.error('Error fetching spots:', error);
     alert('観光地の取得に失敗しました');
@@ -30,13 +29,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // 検索ボタンの処理
   const searchButton = document.getElementById('serch-button');
-  
+
   if (!searchButton) {
     console.error('Search button not found');
     return;
   }
 
-  searchButton.addEventListener('click', async function(event) {
+  searchButton.addEventListener('click', async function (event) {
     event.preventDefault(); // デフォルトの動作を停止
 
     // スポットと年月の値を取得
@@ -60,7 +59,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         const station_id = data.station_id;
 
         // `fetchSunnyRate` を呼び出して天気データを取得
-        const sunnyRateData = await fetchSunnyRate(station_id, `${year}-${month}`);
+        const sunnyRateData = await fetchSunnyRate(
+          station_id,
+          `${year}-${month}`,
+        );
         console.log('Sunny rate data:', sunnyRateData);
 
         // station_idを使って結果ページに遷移
@@ -71,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert('エラーが発生しました: ' + error.message);
       }
     } else {
-      alert("観光地と月を選択してください");
+      alert('観光地と月を選択してください');
     }
   });
 });

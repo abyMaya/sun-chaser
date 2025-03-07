@@ -33,9 +33,9 @@
   border: solid 1px;
   background: linear-gradient(45deg, rgb(19, 30, 229), rgb(156, 204, 229));
   border-radius: 8px;
-  }
+}
 
-.left-bottom  {
+.left-bottom {
   display: flex;
   flex-direction: column;
   margin: 10px 20px 20px 20px;
@@ -44,12 +44,11 @@
   border: 0.3px solid hwb(0 89% 9%);
   border-radius: 8px;
   box-shadow: 1px 2px 5px hwb(0 88% 11%);
-  }
+}
 
 .left-top > div {
   display: flex;
   flex-direction: column; /* 縦並び */
-  
 }
 
 .left-top span {
@@ -95,7 +94,8 @@
   grid-template-rows: repeat(6, 70px);
 }
 
-.day-name, .day {
+.day-name,
+.day {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
@@ -155,22 +155,21 @@ td span {
   position: absolute;
   top: 5px;
   left: 5px;
-  text-align: left;  
+  text-align: left;
 }
 
 .calendar-title {
-  text-align: center;    /* 水平中央揃え */
+  text-align: center; /* 水平中央揃え */
   font-family: 'Amatic SC', cursive; /* フォントを変更 */
-  font-size: 20px;       /* フォントサイズを大きく */
-  color:rgb(19, 30, 229);    /* フォントを太字に */
-  margin-bottom: 20px;   /* カレンダーとの間に余白を作る */
+  font-size: 20px; /* フォントサイズを大きく */
+  color: rgb(19, 30, 229); /* フォントを太字に */
+  margin-bottom: 20px; /* カレンダーとの間に余白を作る */
 }
 
 #back_to_serch {
   text-align: right;
   margin-right: 5px;
 }
-
 
 td {
   position: relative; /* 親要素を基準にアイコンを配置 */

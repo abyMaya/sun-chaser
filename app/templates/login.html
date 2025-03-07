@@ -1,34 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SUN Chaser</title>
-  <link rel="icon" href="../static/img/clear_day.svg" id="favicon">
-  <link rel="stylesheet" href="../static/css/style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUN Chaser</title>
+    <link rel="icon" href="../static/img/clear_day.svg" id="favicon" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+  </head>
 
-<body>
-  <header class="header">
-    <h1>SUN Chaser</h1>  
-  </header>  
-  <main>
-    <div class="container">
-      <form id="userLogin" action="/login" method="POST">
-        <label>Email</label>
-        <input type="text" id="email" name="email" placeholder="Value"/>
-        <label>Password</label>
-        <input type="password" id="password" name="password" placeholder="Value" />
-        <button type="submit">Log In</button>
-      </form>
-      <a href="#" style="float: left;">Forgot password?</a>
-      <div style="text-align: right; margin-top: 10px;">
-        <a href="{{ url_for('signup') }}">新規登録はこちら</a>
+  <body>
+    <header class="header">
+      <h1>SUN Chaser</h1>
+    </header>
+    <main>
+      <div class="container">
+        <form id="userLogin" action="/login" method="POST">
+          <label>Email</label>
+          <input type="text" id="email" name="email" placeholder="Value" />
+          <label>Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Value"
+          />
+          <button type="submit">Log In</button>
+        </form>
+        <a href="#" style="float: left">Forgot password?</a>
+        <div style="text-align: right; margin-top: 10px">
+          <a href="{{ url_for('signup') }}">新規登録はこちら</a>
+        </div>
       </div>
-    </div> 
-  </main>
-  <footer>
-    <p>&copy;2024 SUN Chaser abyMaya</p>
-  </footer>
-</body>
+    </main>
+    <footer>
+      <p>&copy;2024 SUN Chaser abyMaya</p>
+    </footer>
+  </body>
 </html>

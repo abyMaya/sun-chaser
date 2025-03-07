@@ -27,15 +27,15 @@
   border: 0.3px solid hwb(0 89% 9%);
   border-radius: 8px;
   box-shadow: 1px 2px 5px hwb(0 88% 11%);
-  }
+}
 
-.left-bottom  {
+.left-bottom {
   display: flex;
   flex-direction: column;
   margin: 10px 20px 20px 20px;
   padding: 10px 40px;
   box-sizing: border-box;
-  }
+}
 
 .right {
   flex: 1;
@@ -49,7 +49,7 @@
 }
 
 .info {
-  width: 100%; 
+  width: 100%;
   padding: 10px 70px;
   display: flex;
   justify-content: space-between;
@@ -63,8 +63,8 @@
 }
 
 .spot_register {
-  width: 100%;  
-  display:flex;
+  width: 100%;
+  display: flex;
   flex-direction: column;
   font-size: 13px;
   margin: 0 auto;
@@ -72,34 +72,29 @@
   box-sizing: border-box;
 }
 
-.spot_register input[type="text"],
+.spot_register input[type='text'],
 .spot_register select {
-  width: 100%; /* フォーム要素全体を同じ幅に */  
-  box-sizing: border-box;  
+  width: 100%; /* フォーム要素全体を同じ幅に */
+  box-sizing: border-box;
   border: 0.3px solid hwb(0 89% 9%);
   border-radius: 8px;
   box-shadow: 1px 2px 5px hwb(0 88% 11%);
 }
 
-
-
 .left-bottom {
   width: 80%;
   margin: 30px auto;
-
 }
 
 #edit {
   width: 20px;
   height: 20px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 #save {
   width: 20px;
   height: 20px;
-  cursor:pointer;
+  cursor: pointer;
   display: none;
-  
 }
-

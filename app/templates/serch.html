@@ -1,66 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SUN Chaser</title>
-  <link rel="icon" href="../static/img/clear_day.svg" id="favicon">
-  <link rel="stylesheet" href="../static/css/style.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUN Chaser</title>
+    <link rel="icon" href="../static/img/clear_day.svg" id="favicon" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+  </head>
 
-<body>
-  <header class="header" >
-    <h1>SUN Chaser</h1>
-    <div class="shortcut">
-      <a href="{{ url_for('profile') }}">Setting</a>
-      <a href="{{ url_for('logout') }}">Logout</a>
-    </div>
-  </header>
-  <main>
-    <div id="form_and_btn">
-      <form id="search-form"> <!-- 一つのフォームに統一 -->
-        <div id="serch">
-          <div id="details">
-            <label for="spotsSelect">Select Spot</label>
-            <select id="spotsSelect" name="spotsSelect" required>
-              <option value="" selected disabled></option>
-              <!-- スポットオプションをここに追加 -->
-            </select>
+  <body>
+    <header class="header">
+      <h1>SUN Chaser</h1>
+      <div class="shortcut">
+        <a href="{{ url_for('profile') }}">Setting</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
+    </header>
+    <main>
+      <div id="form_and_btn">
+        <form id="search-form">
+          <!-- 一つのフォームに統一 -->
+          <div id="serch">
+            <div id="details">
+              <label for="spotsSelect">Select Spot</label>
+              <select id="spotsSelect" name="spotsSelect" required>
+                <option value="" selected disabled></option>
+                <!-- スポットオプションをここに追加 -->
+              </select>
+            </div>
+
+            <img src="../static/img/add_20dp.png" />
+            <div id="details">
+              <label>Select Month</label>
+              <input type="month" id="month" name="month" required />
+            </div>
           </div>
 
-          <img src="../static/img/add_20dp.png">
-          <div id="details">
-            <label>Select Month</label>
-            <input type="month" id="month" name="month" required>      
+          <div id="button-container">
+            <button id="serch-button" type="submit">Find the SUN!!</button>
           </div>
-        </div>
-
-        <div id="button-container">
-          <button id="serch-button" type="submit">Find the SUN!!</button>
-        </div>
-      </form> <!-- ここでフォームを閉じる -->
-      
-          <!-- </form> -->
-      <div id="options">
-        <a href="{{ url_for('profile') }}" id="spotregister">観光地新規登録</a>
-        <form>
-          <select id="histories">
-            <option>保存済みの検索条件</option>
-            <option>東京タワー＋2024/10</option>
-            <option>鎌倉＋2024/10</option>
-            <option>上高地＋2024/10</option>
-            <option>日光＋2024/10</option>
-          </select>
         </form>
-      </div> 
-    </div>   
-    
-  </main>
-  <footer>
-    <p>&copy;2024 SUN Chaser abyMaya</p>
-  </footer>
+        <!-- ここでフォームを閉じる -->
 
-  <script type="module" src="../static/js/serch.js"defer></script>
-  <script type="module" src="../static/js/result.js" defer></script>
-</body>
+        <!-- </form> -->
+        <div id="options">
+          <a href="{{ url_for('profile') }}" id="spotregister"
+            >観光地新規登録</a
+          >
+          <form>
+            <select id="histories">
+              <option>保存済みの検索条件</option>
+              <option>東京タワー＋2024/10</option>
+              <option>鎌倉＋2024/10</option>
+              <option>上高地＋2024/10</option>
+              <option>日光＋2024/10</option>
+            </select>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>&copy;2024 SUN Chaser abyMaya</p>
+    </footer>
+
+    <script type="module" src="../static/js/serch.js" defer></script>
+    <script type="module" src="../static/js/result.js" defer></script>
+  </body>
 </html>

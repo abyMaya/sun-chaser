@@ -1,37 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SUN Chaser</title>
-  <link rel="icon" href="../static/img/clear_day.svg" id="favicon">
-  <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="../static/css/setting.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUN Chaser</title>
+    <link rel="icon" href="../static/img/clear_day.svg" id="favicon" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/setting.css" />
+  </head>
 
-<body>
-  <header class="header" >
-    <h1>SUN Chaser</h1>
-    <div class="shortcut">
-      <a href="{{ url_for('serch') }}">Serch</a>
-      <!-- <a href="{{ url_for('profile') }}">Setting</a> -->
-      <a href="{{ url_for('logout') }}">Logout</a>
-    </div>
-  </header>
-  <main>
+  <body>
+    <header class="header">
+      <h1>SUN Chaser</h1>
+      <div class="shortcut">
+        <a href="{{ url_for('serch') }}">Serch</a>
+        <!-- <a href="{{ url_for('profile') }}">Setting</a> -->
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
+    </header>
+    <main>
       <div class="setting">
         <div class="left">
           <div class="left-top">
-
             <div>
-              <div class="section_title">
-                ユーザー情報
-              </div>
+              <div class="section_title">ユーザー情報</div>
               <div class="info">
                 <span id="usernameDisplay">{{ user.username }}</span>
-                <img id="edit" src ="../static/img/edit_16dp_5F6368_FILL0_wght400_GRAD0_opsz20.png">
-                <input type="text" id="usernameInput" style="display:none;">
-                <img id="save"  disabled  src="../static/img/save_16dp_5F6368_FILL0_wght400_GRAD0_opsz20.png">
+                <img
+                  id="edit"
+                  src="../static/img/edit_16dp_5F6368_FILL0_wght400_GRAD0_opsz20.png"
+                />
+                <input type="text" id="usernameInput" style="display: none" />
+                <img
+                  id="save"
+                  disabled
+                  src="../static/img/save_16dp_5F6368_FILL0_wght400_GRAD0_opsz20.png"
+                />
               </div>
               <div class="info">
                 <span>{{ user.email }}</span>
@@ -39,53 +43,49 @@
               <div class="info">
                 <span>Password変更</span>
               </div>
-          
-            </div> 
-
+            </div>
           </div>
 
           <div class="left-bottom">
-            <button><a href="#">観光地情報・検索条件リスト管理</a></button>            
+            <button><a href="#">観光地情報・検索条件リスト管理</a></button>
           </div>
-
         </div>
-        <div class="right">        
-          <div class="section_title">
-            観光地登録
-          </div>            
+        <div class="right">
+          <div class="section_title">観光地登録</div>
           <div>
             <form class="spot_register" action="/spot-register" method="POST">
               <label>観光地名</label>
-              <input type="text" id="spot" name="spot" placeholder="Value"/>
+              <input type="text" id="spot" name="spot" placeholder="Value" />
 
-              <label for="location" >所在地</label>
+              <label for="location">所在地</label>
               <select id="location" name="location" required>
-                <option value="" selected disabled>地域を選択してください</option>
+                <option value="" selected disabled>
+                  地域を選択してください
+                </option>
                 <!-- 地域の選択肢はJavaScriptで追加されます -->
-                
               </select>
               <!-- 選択された気象台の名前を表示するための要素 -->
               <label>気象台</label>
               <select id="station" name="station" required>
-                  <option value="" selected disabled>気象台を選択してください</option>
-                  <!-- ここに気象台の選択肢が追加されます -->
+                <option value="" selected disabled>
+                  気象台を選択してください
+                </option>
+                <!-- ここに気象台の選択肢が追加されます -->
               </select>
-              
+
               <!-- <label>メモ</label>
               <input type="text" id="memo" name="memo" placeholder="詳細情報を入力してください"/> -->
               <button type="submit">登録</button>
             </form>
           </div>
         </div>
-      </div>  
-    
-     
-     <script src="../static/js/result.js"></script>
-     <script src="../static/js/setting.js"></script>
+      </div>
+
+      <script src="../static/js/result.js"></script>
+      <script src="../static/js/setting.js"></script>
     </main>
     <footer>
       <p>&copy;2024 SUN Chaser abyMaya</p>
     </footer>
-   
   </body>
-  </html>
+</html>

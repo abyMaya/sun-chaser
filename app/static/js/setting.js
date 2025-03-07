@@ -25,17 +25,17 @@ save.addEventListener('click', async () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username: newUsername}),
+      body: JSON.stringify({ username: newUsername }),
     });
 
     if (response.ok) {
-        usernameDisplay.textContent = newUsername;
-        usernameDisplay.style.display = 'block';
-        usernameInput.style.display = 'none';
-        save.style.display = 'none';
-        edit.style.display = 'block';
+      usernameDisplay.textContent = newUsername;
+      usernameDisplay.style.display = 'block';
+      usernameInput.style.display = 'none';
+      save.style.display = 'none';
+      edit.style.display = 'block';
     } else {
-        alert('更新に失敗しました');
+      alert('更新に失敗しました');
     }
   } catch (error) {
     console.error('Error:', error);
@@ -45,52 +45,52 @@ save.addEventListener('click', async () => {
 
 // 観光地登録
 // 地域を取得
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const locationSelect = document.getElementById('location');
-  const stationSelect = document.getElementById('station'); 
-  
+  const stationSelect = document.getElementById('station');
+
   // 地域を取得
   try {
-      const response = await fetch('/get-regions');
-      if (!response.ok) {
-          throw new Error('Network response was not ok: ' + response.statusText);
-      }
+    const response = await fetch('/get-regions');
+    if (!response.ok) {
+      throw new Error('Network response was not ok: ' + response.statusText);
+    }
 
-      const regions = await response.json();
+    const regions = await response.json();
 
-      regions.forEach(region => {
-          const option = document.createElement('option');
-          option.value = region.region_id;  // region_idをvalueに設定
-          option.textContent = region.region_name;  // region_nameを表示
-          locationSelect.appendChild(option); // 地域のプルダウンに追加
-      });
+    regions.forEach((region) => {
+      const option = document.createElement('option');
+      option.value = region.region_id; // region_idをvalueに設定
+      option.textContent = region.region_name; // region_nameを表示
+      locationSelect.appendChild(option); // 地域のプルダウンに追加
+    });
   } catch (error) {
-      console.error('Error fetching regions:', error);
-      alert('地域の取得に失敗しました');
+    console.error('Error fetching regions:', error);
+    alert('地域の取得に失敗しました');
   }
 
   // 地域選択時のイベント
-  locationSelect.addEventListener('change', async function() {
+  locationSelect.addEventListener('change', async function () {
     const regionId = this.value;
-    
+
     if (regionId) {
-        try {          
-            const response = await fetch(`/get-stations/${regionId}`);
-            const stations = await response.json();
-            
-            stationSelect.innerHTML = '<option value="" selected disabled>気象台を選択してください</option>';
+      try {
+        const response = await fetch(`/get-stations/${regionId}`);
+        const stations = await response.json();
 
-            stations.forEach(station => {
-              const option = document.createElement('option');
-              option.value = station.station_id;
-              option.textContent = station.station_name;
-              stationSelect.appendChild(option);
-            });
+        stationSelect.innerHTML =
+          '<option value="" selected disabled>気象台を選択してください</option>';
 
-        } catch (error) {
-            console.error('Error fetching stations:', error);
-            alert('気象台の取得に失敗しました');
-        }
+        stations.forEach((station) => {
+          const option = document.createElement('option');
+          option.value = station.station_id;
+          option.textContent = station.station_name;
+          stationSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error fetching stations:', error);
+        alert('気象台の取得に失敗しました');
+      }
     }
   });
 });
