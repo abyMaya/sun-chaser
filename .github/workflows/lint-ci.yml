@@ -95,10 +95,9 @@ jobs:
       - name: Run Prettier
         run: |
           npx prettier --config ./lint/prettierrc --check "app/static/js/**/*.js" "app/templates/**/*.html"
-
       - name: Run ESLint
         run: |
-          npx eslint --config ./lint/eslintrc "app/static/js/**/*.js" --max-warnings=0
+          npx eslint --config ./lint/eslintrc.cjs "app/static/js/**/*.js" --max-warnings=0
 
       - name: Run Stylelint
         run: |
