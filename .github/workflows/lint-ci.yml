@@ -37,19 +37,20 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '18'
 
       - name: Cache Node modules
         uses: actions/cache@v3
         with:
-          path: ~/.npm
+          path: |
+            ~/.npm
+            node_modules
           key: ${{ runner.os }}-npm-v2-${{ hashFiles('**/package-lock.json')}}
           restore-keys: |
             ${{ runner.os }}-npm-v2-
 
       - name: Install Node.js dependencies
-        run: |
-          npm install
+        run: npm ci
 
   backend-lint:
     name: Backend Lint with black, isort, and flake8
