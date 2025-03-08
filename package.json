@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --config ./lint/prettierrc --write .",
-    "lint": "eslint . --config ./lint/eslintrc --fix",
+    "lint": "eslint . --config ./lint/eslintrc.cjs --fix",
     "fix": "npm run format && npm run lint",
     "lint:css": "stylelint 'app/static/css/**/*.css' --config ./lint/stylelintrc.js --fix",
     "lint:style": "npm run lint:css"
@@ -17,8 +17,8 @@
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.21.0",
-    "eslint": "^9.21.0",
-    "eslint-config-prettier": "^10.0.2",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
