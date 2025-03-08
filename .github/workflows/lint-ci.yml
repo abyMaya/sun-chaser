@@ -89,6 +89,8 @@ jobs:
     needs: setup
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: List root directory files
         run: ls -R
       - name: List files to check paths
