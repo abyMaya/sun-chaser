@@ -58,8 +58,8 @@ jobs:
           npm ci --no-cache
       
       - name: Install ESLint plugin for Prettier
-      run: |
-        npm install eslint-plugin-prettier --save-dev
+        run: |
+          npm install eslint-plugin-prettier --save-dev
 
   backend-lint:
     name: Backend Lint with black, isort, and flake8
