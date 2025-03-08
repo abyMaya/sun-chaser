@@ -91,14 +91,14 @@ jobs:
     steps:
       - name: Run Prettier
         run: |
-          npx prettier --config ./lint/prettierrc --check "/app/static/**/*.{js}" "/app/templates/**/*.html" --no-cache
+          npx prettier --config ./lint/prettierrc --check
       - name: Run ESLint
         run: |
           npx eslint --config ./lint/eslintrc . --max-warnings=0
 
       - name: Run Stylelint
         run: |
-          npx stylelint "/app/static/css/**/*.css" --max-warnings=0
+          npx stylelint --max-warnings=0
 
   success:
     runs-on: ubuntu-latest
