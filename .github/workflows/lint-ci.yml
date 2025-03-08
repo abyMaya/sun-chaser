@@ -89,6 +89,8 @@ jobs:
     needs: setup
 
     steps:
+      - name: List root directory files
+        run: ls -R
       - name: List files to check paths
         run: |
           ls -R app/static/js
