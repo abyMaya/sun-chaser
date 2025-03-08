@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --config ./lint/prettierrc --write .",
     "lint": "eslint . --config ./lint/eslintrc --fix",
-    "fix": "npm run format && npm run lint"
+    "fix": "npm run format && npm run lint",
+    "lint:css": "stylelint 'app/static/css/**/*.css' --config ./lint/stylelintrc.js --fix",
+    "lint:style": "npm run lint:css"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +23,8 @@
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
     "stylelint": "^16.15.0",
-    "stylelint-config-standard": "^37.0.0"
+    "stylelint-config-standard": "^37.0.0",
+    "stylelint-scss": "^6.11.1"
   },
   "dependencies": {
     "acorn": "^8.14.1",

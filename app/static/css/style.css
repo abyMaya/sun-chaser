@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 html,
 body {
   height: 100%;
@@ -13,13 +14,11 @@ body {
   align-items: center;
   font-family: 'Amatic SC', cursive;
   font-size: medium;
-  font-family: 'Amatic SC', cursive;
-  font-size: medium;
   text-align: left;
   height: 120px;
   width: 100%;
-  background: linear-gradient(45deg, rgb(19, 30, 229), rgb(156, 204, 229));
-  color: rgb(237, 202, 202);
+  background: linear-gradient(45deg, rgb(19 30 229), rgb(156 204 229));
+  color: rgb(237 202 202);
   padding: 0 20px;
   box-sizing: border-box;
 }
@@ -37,12 +36,21 @@ body {
   margin-bottom: 10px;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  font-weight: bold;
+}
+
 .header .shortcut a {
-  color: rgb(237, 202, 202);
+  color: rgb(237 202 202);
 }
 
 .header .shortcut a:hover {
-  color: rgb(19, 30, 229);
+  color: rgb(19 30 229);
 }
 
 main {
@@ -53,22 +61,19 @@ main {
   overflow-y: auto;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
 
-a:hover {
-  font-weight: bold;
-}
+
+
+
+
 
 footer {
   height: 35px;
   width: 100%;
-  background: linear-gradient(45deg, rgb(19, 30, 229), rgb(156, 204, 229));
+  background: linear-gradient(45deg, rgb(19 30 229), rgb(156 204 229));
   position: absolute;
   bottom: 0;
-  color: rgb(237, 202, 202);
+  color: rgb(237 202 202);
   font-size: smaller;
   text-align: center;
 }
@@ -76,18 +81,19 @@ footer {
 .container {
   width: 448px;
   margin: 120px auto;
-  padding: 24px 24px;
-  background-color: #ffffff;
-  border: 0.3px solid hwb(0 89% 9%);
+  padding: 24px;
+  background-color: #fff;
+  border: 0.3px solid hwb(0deg 89% 9%);
   border-radius: 8px;
-  box-shadow: 1px 2px 5px hwb(0 88% 11%);
+  box-shadow: 1px 2px 5px hwb(0deg 88% 11%);
 }
+
 input[type='text'],
 input[type='password'] {
   width: 93%;
   padding: 12px 16px;
   margin-bottom: 10px;
-  border: 0.3px solid hwb(0 89% 9%);
+  border: 0.3px solid hwb(0deg 89% 9%);
   border-radius: 8px;
 }
 
@@ -96,7 +102,7 @@ button[type='submit'] {
   margin: 10px auto;
   margin-bottom: 15px;
   padding: 10px;
-  background-color: rgb(19, 30, 229);
+  background-color: rgb(19 30 229);
   color: white;
   border: none;
   border-radius: 8px;
@@ -104,7 +110,7 @@ button[type='submit'] {
 }
 
 button[type='submit']:hover {
-  background-color: rgb(237, 202, 202);
+  background-color: rgb(237 202 202);
 }
 
 form label,
@@ -122,10 +128,9 @@ form select {
   margin-bottom: 5px;
 }
 
-#form_and_btn {
+#form-and-btn {
   width: 600px;
   margin: 70px auto;
-  display: flex;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -160,17 +165,17 @@ form select {
   font-size: 13px;
   margin: 5px auto;
   box-sizing: border-box;
-  border: 0.3px solid hwb(0 89% 9%);
+  border: 0.3px solid hwb(0deg 89% 9%);
   border-radius: 8px;
 }
 
-#station_name {
+#station-name {
   width: 100%;
   padding: 10px 15px;
   font-size: 13px;
   margin: 10px auto;
   box-sizing: border-box;
-  border: 0.3px solid hwb(0 89% 9%);
+  border: 0.3px solid hwb(0deg 89% 9%);
   border-radius: 8px;
 }
 
@@ -181,16 +186,18 @@ form select {
   justify-content: center;
   margin-left: auto;
 }
+
 #options #spotregister {
   width: 90%;
   padding: 5px 10px;
   font-size: 13px;
 }
+
 #options #histories {
   width: 90%;
-  padding: 5px 5px;
+  padding: 5px;
   font-size: 13px;
   box-sizing: border-box;
-  border: 0.3px solid hwb(0 89% 9%);
+  border: 0.3px solid hwb(0deg 89% 9%);
   border-radius: 8px;
 }
