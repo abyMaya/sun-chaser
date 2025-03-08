@@ -91,12 +91,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: List root directory files
-        run: ls -R
-      - name: List files to check paths
-        run: |
-          ls -R app/static/js
-          ls -R app/templates
       - name: Run Prettier
         run: |
           npx prettier --config ./lint/prettierrc --check "app/static/js/**/*.js" "app/templates/**/*.html"       
