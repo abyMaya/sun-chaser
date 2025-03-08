@@ -93,7 +93,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Run Prettier
         run: |
-          npx prettier --config ./lint/prettierrc --check "app/static/js/**/*.js" "app/templates/**/*.html"       
+          npx prettier --config ./lint/prettierrc --check "app/static/js/**/*.js" "app/templates/**/*.html"
       - name: Run ESLint
         run: |
           npx eslint --config ./lint/eslintrc . --max-warnings=0

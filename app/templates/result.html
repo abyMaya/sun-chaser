@@ -1,63 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SUN Chaser</title>
-  <link rel="icon" href="../static/img/clear_day.svg" id="favicon">
-  <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="../static/css/result.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUN Chaser</title>
+    <link rel="icon" href="../static/img/clear_day.svg" id="favicon" />
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/result.css" />
+  </head>
 
-<body>
-  <header class="header" >
-    <h1>SUN Chaser</h1>
-    <div class="shortcut">
-      <a href="{{ url_for('serch') }}">Serch</a>
-      <a href="{{ url_for('profile') }}">Setting</a>
-      <a href="{{ url_for('logout') }}">Logout</a>
-    </div>
-  </header>
-  <main>
-    <div class="wrapper">
-      <div class="left">
-        <div class="left-top">
-          <div>
-            <span class="result-title">
-              {{ spot }} + {{ month }}
-            </span>
-            <button id="keep_serch">検索条件の保存</button>          
-          </div>          
-        </div>
-        <div class="left-bottom">
-          <div>
-            <p>晴れ出現率</p>
-            <p>天気予報ではありません。1990～2020年までの過去情報を元にした出現率です</p>
+  <body>
+    <header class="header">
+      <h1>SUN Chaser</h1>
+      <div class="shortcut">
+        <a href="{{ url_for('serch') }}">Serch</a>
+        <a href="{{ url_for('profile') }}">Setting</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </div>
+    </header>
+    <main>
+      <div class="wrapper">
+        <div class="left">
+          <div class="left-top">
+            <div>
+              <span class="result-title"> {{ spot }} + {{ month }} </span>
+              <button id="keep_serch">検索条件の保存</button>
+            </div>
           </div>
-          <div>
-            <label>フィルター設定</label>
-            <p><img src="../static/img/sun_high_2.png"/>80%～   <input type="checkbox" ></p>
-            <p><img src="../static/img/sun_mid_2.png"/>65%～   <input type="checkbox" ></p>
-            <p><img src="../static/img/sun_low_2.png"/>50%～   <input type="checkbox" ></p>
+          <div class="left-bottom">
+            <div>
+              <p>晴れ出現率</p>
+              <p>
+                天気予報ではありません。1990～2020年までの過去情報を元にした出現率です
+              </p>
+            </div>
+            <div>
+              <label>フィルター設定</label>
+              <p>
+                <img src="../static/img/sun_high_2.png" />80%～
+                <input type="checkbox" />
+              </p>
+              <p>
+                <img src="../static/img/sun_mid_2.png" />65%～
+                <input type="checkbox" />
+              </p>
+              <p>
+                <img src="../static/img/sun_low_2.png" />50%～
+                <input type="checkbox" />
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div id="calendar2"></div>
+          <div id="back-to-serch">
+            <a href="{{ url_for('serch') }}">検索画面へ戻る</a>
           </div>
         </div>
       </div>
-      <div class="right">        
-        <div id="calendar2" ></div>
-        <div id="back-to-serch">
-          <a href="{{ url_for('serch') }}">検索画面へ戻る</a>
-        </div>  
-        </div>      
-      </div>  
-    <!-- 問題なく動くことが確認できたら余分と思われる次の閉じタグ削除     -->
-    <!-- </div>   -->
-  
-    <script type="module" src="../static/js/serch.js" defer></script>
-    <script type="module" src="../static/js/result.js" defer></script>
-  </main>
-  <footer>
-    <p>&copy;2024 SUN Chaser abyMaya</p>
-  </footer>
- 
-</body>
+      <!-- 問題なく動くことが確認できたら余分と思われる次の閉じタグ削除     -->
+      <!-- </div>   -->
+
+      <script type="module" src="../static/js/serch.js" defer></script>
+      <script type="module" src="../static/js/result.js" defer></script>
+    </main>
+    <footer>
+      <p>&copy;2024 SUN Chaser abyMaya</p>
+    </footer>
+  </body>
 </html>
