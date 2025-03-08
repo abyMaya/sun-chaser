@@ -92,6 +92,10 @@ jobs:
       - name: Check current directory
         run: pwd
 
+      - name: Check file structure
+        run: |
+          ls -R
+
       - name: Run Prettier
         run: |
           npx prettier --config ./lint/prettierrc --check '**/*.{js,html}'
