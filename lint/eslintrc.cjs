@@ -1,4 +1,4 @@
-const prettier = require("eslint-plugin-prettier");
+const prettier = require('eslint-plugin-prettier');
 
 module.exports = [
   {
@@ -9,7 +9,7 @@ module.exports = [
       prettier: prettier,
     },
     rules: {
-      "prettier/prettier": ["error"],
+      'prettier/prettier': ['error'],
     },
   },
 ];
