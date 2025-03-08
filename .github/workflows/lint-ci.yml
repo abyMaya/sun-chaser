@@ -97,7 +97,7 @@ jobs:
 
       - name: Run ESLint
         run: |
-          npx eslint --config ./lint/eslintrc . "app/static/js/**/*.js" --max-warnings=0
+          npx eslint --config ./lint/eslintrc "app/static/js/**/*.js" --max-warnings=0
 
       - name: Run Stylelint
         run: |
