@@ -91,11 +91,11 @@ jobs:
     steps:
       - name: List files to check paths
         run: |
-          ls -R app/js
+          ls -R app/static/js
           ls -R app/templates
       - name: Run Prettier
         run: |
-          npx prettier --config ./lint/prettierrc --check "app/js/**/*.js" "app/templates/**/*.html"       
+          npx prettier --config ./lint/prettierrc --check "app/static/js/**/*.js" "app/templates/**/*.html"       
       - name: Run ESLint
         run: |
           npx eslint --config ./lint/eslintrc . --max-warnings=0
