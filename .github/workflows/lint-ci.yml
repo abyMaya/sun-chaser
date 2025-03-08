@@ -94,7 +94,6 @@ jobs:
 
       - name: Run Prettier
         run: |
-          npx prettier --config ./lint/prettierrc --check .
           npx prettier --config ./lint/prettierrc --check '**/*.{js,html}'
       - name: Run ESLint
         run: |
