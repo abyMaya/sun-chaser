@@ -89,16 +89,9 @@ jobs:
     needs: setup
 
     steps:
-      - name: Check current directory
-        run: pwd
-
-      - name: Check file structure
-        run: |
-          ls -R
-
       - name: Run Prettier
         run: |
-          npx prettier --config ./lint/prettierrc --check '**/*.js' '**/*.html'
+          npx prettier --config ./lint/prettierrc --check './app/static/**/*.{js,html}' --no-cache
       - name: Run ESLint
         run: |
           npx eslint --config ./lint/eslintrc . --max-warnings=0
