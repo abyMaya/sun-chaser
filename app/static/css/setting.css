@@ -73,7 +73,7 @@
   box-sizing: border-box;
 }
 
-.spot-register input[type='text'],
+.spot-register input[type="text"],
 .spot-register select {
   width: 100%; /* フォーム要素全体を同じ幅に */
   box-sizing: border-box;

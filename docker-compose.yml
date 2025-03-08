@@ -5,7 +5,7 @@ services:
       dockerfile: Docker/Flask/Dockerfile
     container_name: app
     ports:
-      - '5000:5000'
+      - "5000:5000"
     depends_on:
       - db
     environment:
@@ -21,9 +21,9 @@ services:
       context: .
       dockerfile: Docker/MySQL/Dockerfile
     container_name: db
-    restart: 'no'
+    restart: "no"
     ports:
-      - '3306:3306'
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=SUN_Chaser
@@ -40,7 +40,7 @@ services:
     image: nginx:alpine
     container_name: web
     ports:
-      - '80:80'
+      - "80:80"
     volumes:
       - ./Docker/NginX/nginx.conf:/etc/nginx/nginx.conf
     depends_on:

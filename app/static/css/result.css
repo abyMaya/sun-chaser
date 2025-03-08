@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .result-title {
-  font-family: 'Amatic SC', cursive;
+  font-family: "Amatic SC", cursive;
   font-size: large;
   text-align: center;
   color: rgb(237 202 202);
@@ -116,7 +116,7 @@ td span {
 }
 
 .day::after {
-  content: '';
+  content: "";
   display: block;
   width: 6px;
   height: 6px;
@@ -159,7 +159,7 @@ td {
 
 .calendar-title {
   text-align: center; /* 水平中央揃え */
-  font-family: 'Amatic SC', cursive; /* フォントを変更 */
+  font-family: "Amatic SC", cursive; /* フォントを変更 */
   font-size: 20px; /* フォントサイズを大きく */
   color: rgb(19 30 229); /* フォントを太字に */
   margin-bottom: 20px; /* カレンダーとの間に余白を作る */
