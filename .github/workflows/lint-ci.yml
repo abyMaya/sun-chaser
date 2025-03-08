@@ -54,7 +54,9 @@ jobs:
             ${{ runner.os }}-npm-v2-
 
       - name: Install Node.js dependencies
-        run: npm ci
+        run: |
+          npm ci
+          npm install eslint-plugin-prettier --save-dev
 
   backend-lint:
     name: Backend Lint with black, isort, and flake8
