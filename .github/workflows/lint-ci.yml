@@ -43,7 +43,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-v2-${{ hashFiles('**/pacjage-lock.json')}}
+          key: ${{ runner.os }}-npm-v2-${{ hashFiles('**/package-lock.json')}}
           restore-keys: |
             ${{ runner.os }}-npm-v2-
 
